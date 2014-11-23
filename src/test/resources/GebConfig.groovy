@@ -13,6 +13,12 @@ waiting {
         }
     }
 }
+waiting {
+    timeout = 60
+    retryInterval = 0.5
+}
+atCheckWaiting = true
+baseNavigatorWaiting = true
 reporter = new ScreenshotReporter() {
     @Override
     protected escapeFileName(String name) {
