@@ -1,0 +1,28 @@
+package org.star.page
+
+import geb.Page
+
+/**
+ * Created by itagakishintarou on 2014/11/23.
+ */
+class TagListPage extends Page{
+    static url = "tag"
+    static at = {
+        $("h1").text() == "Tagリスト"
+    }
+    static content = {
+        addTagForm { $("form[role=form]") }
+        message { $("div.alert") }
+    }
+
+    public void addTag(String name, String description) {
+        addTagForm.name = name
+        addTagForm.description = description
+        addTagForm.create().click()
+    }
+
+    public boolean isTagCreationSuccessful() {
+        waitFor { message.isDisplayed() }
+        return message.isDisplayed() && message.hasClass("alert-info")
+    }
+}
