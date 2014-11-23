@@ -7,7 +7,7 @@ import org.star.helper.UserHelper
 /**
  * Created by kenichiro_ota on 14/11/23.
  */
-class TestCaseRegistrationAndReview extends GebReportingSpec {
+class TestCaseRegistrationProcedure extends GebReportingSpec {
     private def tag = "tag_" + UUID.randomUUID()
     private def description = "description_" + UUID.randomUUID()
     private def testcaseName = "testcaseName_" + UUID.randomUUID()
