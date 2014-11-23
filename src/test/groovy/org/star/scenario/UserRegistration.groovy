@@ -14,11 +14,13 @@ class UserRegistration extends GebReportingSpec {
     def userName
     def password
     def mailAddress
+    def mailPassword
 
     def setup() {
         userName = "user_" + UUID.randomUUID()
         password = UUID.randomUUID().toString()
-        mailAddress = "hiroko.tamagawa@shiftinc.jp"
+        mailAddress = "stac2014tamagawa@gmail.com"
+        mailPassword = "tamagawa2014"
     }
 
     // 一般ユーザが登録できること
@@ -40,5 +42,9 @@ class UserRegistration extends GebReportingSpec {
         login userName, password
         then: "ログイン後、ダッシュボードが開く"
         at DashBoardPage
+        //and: "adminメニューが表示されないことを確認する"
+        //assert header.menuAdmin().isDisplayed()
+        and: "新着メールに新規登録したユーザー名が含まれることを確認する"
+        assert UserHelper.getBodyFromMail(mailAddress, mailPassword).contains(userName)
     }
 }
