@@ -1,6 +1,7 @@
 package org.star.module
 
 import geb.Module
+import org.star.page.TestCaseListPage
 import org.star.page.TopPage
 import org.star.page.UserListPage
 
@@ -11,7 +12,7 @@ class LoginHeaderModule extends Module {
     static content = {
         menuAdmin { $("li.item-admin a") }
         menuUser(to: UserListPage) { $("li.item-secureUser a") }
-
+        menuTestCaseList(to: TestCaseListPage){ $("li.item-testCase a") }
         buttonLogout(to: TopPage) { $("#logout a") }
     }
 
@@ -19,6 +20,10 @@ class LoginHeaderModule extends Module {
         menuAdmin.click()
         waitFor { menuUser.isDisplayed() }
         menuUser.click()
+    }
+
+    public void openMenuTestCaseList(){
+        menuTestCaseList.click()
     }
 
     public void logout() {
