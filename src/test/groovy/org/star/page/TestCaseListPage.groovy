@@ -16,10 +16,18 @@ class TestCaseListPage extends Page{
     }
 
     public void addTestCaseWithoutTag(String name, String scenario) {
+        addTestCaseWithoutTag(name, scenario, null)
+    }
+
+    public void addTestCaseWithoutTag(String name, String scenario, String tag) {
         addTestCaseForm.name = name
         addTestCaseForm.scenario = scenario
+        if(tag != null){
+            addTestCaseForm.tags = tag
+        }
         addTestCaseForm.create().click()
     }
+
 
     public boolean isTestCaseCreationSuccessful() {
         waitFor { message.isDisplayed() }

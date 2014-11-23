@@ -1,6 +1,7 @@
 package org.star.page
 
 import geb.Page
+import org.star.module.LoginHeaderModule
 
 /**
  * Created by itagakishintarou on 2014/11/23.
@@ -13,6 +14,7 @@ class TagListPage extends Page{
     static content = {
         addTagForm { $("form[role=form]") }
         message { $("div.alert") }
+        header { module LoginHeaderModule }
     }
 
     public void addTag(String name, String description) {
