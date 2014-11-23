@@ -21,7 +21,7 @@ class UserHelper {
     public static void createUser(Browser browser) {
         def userName = "user_" + UUID.randomUUID()
         def password = UUID.randomUUID().toString()
-        def mailAddress = "hiroko.tamagawa@shiftinc.jp"
+        def mailAddress = "stac2014tamagawa@gmail.com"
 
         TopPage topPage = browser.to TopPage
         topPage.login "admin", "admin"
