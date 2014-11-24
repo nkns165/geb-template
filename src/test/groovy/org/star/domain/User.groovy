@@ -11,15 +11,13 @@ class User {
     String username
     String password
     String mailAddress
-    TopPage topPage
-    DashBoardPage dashBoardPage
+    Browser browser
 
     def login() {
-        topPage.login(username, password)
-        dashBoardPage = topPage.browser.at DashBoardPage
+        browser.page.login(username, password)
     }
 
     def logout() {
-        dashBoardPage.header.logout()
+        browser.page.header.logout()
     }
 }

@@ -36,8 +36,7 @@ class UserHelper {
         browser.waitFor { userListPage.message.isDisplayed() }
         userListPage.header.logout()
 
-        topPage = browser.at TopPage
-        new User(username: username, password: password, mailAddress: mailAddress, topPage: topPage)
+        new User(username: username, password: password, mailAddress: mailAddress, browser: browser)
     }
 
     public static String getBodyFromMail(String mailAddress , String mailPassword){
