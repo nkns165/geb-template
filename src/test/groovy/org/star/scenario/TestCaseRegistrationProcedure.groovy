@@ -11,15 +11,24 @@ import org.star.page.TopPage
  * Created by kenichiro_ota on 14/11/23.
  */
 class TestCaseRegistrationProcedure extends GebReportingSpec {
+    // user
+    def User slave
+    def User teacher
+    // test case
     private def tag = "tag_" + UUID.randomUUID()
     private def description = "description_" + UUID.randomUUID()
     private def name = "name_" + UUID.randomUUID()
     private def scenario = "scenario_" + UUID.randomUUID()
 
+    def setup(){
+        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "hiroko.tamagawa@shiftinc.jp")
+        teacher = new User(username: "admin", password: "admin", mailAddress:"hiroko.tamagawa@shiftinc.jp")
+    }
+
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる" () {
 
        given: "下僕がログインする"
-       UserHelper.createDefaultUser(browser)
+       slave.login()
        when: "タグを追加する"
        header.openMenuTagList()
        addTag(tag, description)
