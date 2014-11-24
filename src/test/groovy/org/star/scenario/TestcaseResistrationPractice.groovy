@@ -10,7 +10,7 @@ import org.star.page.TestCaseListPage
 class TestcaseResistrationPractice extends GebReportingSpec{
     def "テストケース追加の練習"(){
         given: "一般ユーザでログインする"
-        UserHelper.createUser(browser)
+        UserHelper.createDefaultUser(browser)
         when: "テストケースリスト画面を開く"
         header.openMenuTestCaseList()
         then:

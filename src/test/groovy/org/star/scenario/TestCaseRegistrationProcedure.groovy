@@ -1,7 +1,10 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.User
 import org.star.helper.UserHelper
+import org.star.page.DashBoardPage
+import org.star.page.TopPage
 
 
 /**
@@ -16,7 +19,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる" () {
 
        given: "下僕がログインする"
-       UserHelper.createUser(browser)
+       UserHelper.createDefaultUser(browser)
        when: "タグを追加する"
        header.openMenuTagList()
        addTag(tag, description)
@@ -39,5 +42,32 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
        when: "下僕がログインする"
        and: "テストケース名で更新したテストケースを検索する"
        then: "シナリオが先生の更新どおりであることを確認する"
+    }
+
+    def "ユーザーの作成練習"() {
+        when: "ユーザーを追加する"
+        def username = "user_" + UUID.randomUUID()
+        def password = UUID.randomUUID().toString()
+        def mailAddress = "hiroko.tamagawa@shiftinc.jp"
+
+        TopPage topPage = browser.to TopPage
+        User user = UserHelper.createUser(browser, username, password, mailAddress)
+        then: "ユーザーが作られている"
+        user.username == username
+        user.password == password
+        user.mailAddress == mailAddress
+        when: "ログインする"
+        user.login()
+        then: "ダッシュボードページが表示される"
+        browser.at DashBoardPage
+        when: "ログアウトする"
+        user.logout()
+        then:
+        browser.at TopPage
+        when: "もっかいログインする"
+        user.login()
+        then: "ダッシュボードページが表示される"
+        browser.at DashBoardPage
+
     }
 }
