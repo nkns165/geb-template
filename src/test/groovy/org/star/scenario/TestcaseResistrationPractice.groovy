@@ -1,6 +1,7 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.TestCaseListPage
 
@@ -10,7 +11,8 @@ import org.star.page.TestCaseListPage
 class TestcaseResistrationPractice extends GebReportingSpec{
     def "テストケース追加の練習"(){
         given: "一般ユーザでログインする"
-        UserHelper.createDefaultUser(browser)
+        User user = UserHelper.createDefaultUser(browser)
+        user.login()
         when: "テストケースリスト画面を開く"
         header.openMenuTestCaseList()
         then:

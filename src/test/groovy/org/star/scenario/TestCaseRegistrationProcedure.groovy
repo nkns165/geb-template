@@ -68,17 +68,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
 
     def "ユーザーの作成練習"() {
         when: "ユーザーを追加する"
-        def username = "user_" + UUID.randomUUID()
-        def password = UUID.randomUUID().toString()
-        def mailAddress = "hiroko.tamagawa@shiftinc.jp"
-
-        TopPage topPage = browser.to TopPage
-        User user = UserHelper.createUser(browser, username, password, mailAddress)
-        then: "ユーザーが作られている"
-        user.username == username
-        user.password == password
-        user.mailAddress == mailAddress
-        when: "ログインする"
+       User user = UserHelper.createDefaultUser(browser)
         user.login()
         then: "ダッシュボードページが表示される"
         browser.at DashBoardPage
@@ -90,6 +80,5 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         user.login()
         then: "ダッシュボードページが表示される"
         browser.at DashBoardPage
-
     }
 }
