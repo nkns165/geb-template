@@ -45,10 +45,10 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         isTestCaseCreationSuccessful()
         and: "下僕がログアウトする"
-        header.logout()
+        slave.logout()
         when: "先生がログインする"
         to TopPage
-        login "admin", "admin"
+        teacher.login()
         and: "追加したタグでテストケースを検索する"
         at DashBoardPage
         header.openMenuTestCaseList()
@@ -67,18 +67,10 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     }
 
     def "ユーザーの作成練習"() {
-        when: "ユーザーを追加する"
-        User user = UserHelper.createDefaultUser(browser)
-        user.login()
-        then: "ダッシュボードページが表示される"
-        browser.at DashBoardPage
-        when: "ログアウトする"
-        user.logout()
+       when: "下僕がログインする"
+        slave.login()
+        header.openMenuTagList()
         then:
-        browser.at TopPage
-        when: "もっかいログインする"
-        user.login()
-        then: "ダッシュボードページが表示される"
-        browser.at DashBoardPage
+        true
     }
 }
