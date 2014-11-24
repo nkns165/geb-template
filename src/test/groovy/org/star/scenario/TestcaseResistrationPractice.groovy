@@ -3,7 +3,7 @@ package org.star.scenario
 import geb.spock.GebReportingSpec
 import org.star.domain.User
 import org.star.helper.UserHelper
-import org.star.page.TestCaseListPage
+import org.star.page.TestCasePage
 
 /**
  * Created by itagakishintarou on 2014/11/23.
@@ -14,12 +14,12 @@ class TestcaseResistrationPractice extends GebReportingSpec{
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "テストケースリスト画面を開く"
-        header.openMenuTestCaseList()
+        header.openMenuTestCase()
         then:
-        at TestCaseListPage
+        at TestCasePage
         when: "タグなしでテストケースを追加する"
         addTestCaseWithoutTag("テストケース名", "テストケースシナリオ")
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isTestCaseCreationSuccessful()
+        isSuccessful()
     }
 }

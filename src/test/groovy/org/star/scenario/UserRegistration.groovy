@@ -1,6 +1,7 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.DashBoardPage
 import org.star.page.TopPage
@@ -46,5 +47,23 @@ class UserRegistration extends GebReportingSpec {
         //assert header.menuAdmin().isDisplayed()
         and: "新着メールに新規登録したユーザー名が含まれることを確認する"
         assert UserHelper.getBodyFromMail(mailAddress, mailPassword).contains(userName)
+    }
+
+    def "ユーザー削除練習用"(){
+        given:
+        User admin = new User(username: "admin", password: "admin", mailAddress: "hiroko.tamagawa@shiftinc.jp", browser:browser)
+        when:
+        to TopPage
+        admin.login()
+        header.openMenuUser()
+        for(int i = 0; i < 100; i++){
+            sleep(1500)
+            deleteUser(5)
+            sleep(500)
+            driver.switchTo().alert().accept()
+            sleep(1500)
+        }
+        then:
+        true
     }
 }

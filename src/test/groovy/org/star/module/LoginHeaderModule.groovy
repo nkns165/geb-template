@@ -1,8 +1,8 @@
 package org.star.module
 
 import geb.Module
-import org.star.page.TagListPage
-import org.star.page.TestCaseListPage
+import org.star.page.TagPage
+import org.star.page.TestCasePage
 import org.star.page.TopPage
 import org.star.page.UserListPage
 
@@ -13,8 +13,8 @@ class LoginHeaderModule extends Module {
     static content = {
         menuAdmin { $("li.item-admin a") }
         menuUser(to: UserListPage) { $("li.item-secureUser a") }
-        menuTestCaseList(to: TestCaseListPage){ $("li.item-testCase a") }
-        menuTagList(to: TagListPage){ $("li.item-tag a") }
+        menuTestCaseList(to: TestCasePage){ $("li.item-testCase a") }
+        menuTagList(to: TagPage){ $("li.item-tag a") }
         buttonLogout(to: TopPage) { $("#logout a") }
     }
 
@@ -24,11 +24,11 @@ class LoginHeaderModule extends Module {
         menuUser.click()
     }
 
-    public void openMenuTestCaseList(){
+    public void openMenuTestCase(){
         menuTestCaseList.click()
     }
 
-    public void openMenuTagList(){
+    public void openMenuTag(){
         menuTagList.click()
     }
 

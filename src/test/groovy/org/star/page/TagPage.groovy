@@ -6,7 +6,7 @@ import org.star.module.LoginHeaderModule
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TagListPage extends Page{
+class TagPage extends Page{
     static url = "tag"
     static at = {
         $("h1").text() == "Tagリスト"
@@ -15,6 +15,7 @@ class TagListPage extends Page{
         addTagForm { $("form[role=form]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
+        deleteButtuns { $(".glyphicon-remove") }
     }
 
     public void addTag(String name, String description) {
@@ -26,5 +27,9 @@ class TagListPage extends Page{
     public boolean isTagCreationSuccessful() {
         waitFor { message.isDisplayed() }
         return message.isDisplayed() && message.hasClass("alert-info")
+    }
+
+    public void deleteTag(){
+        deleteButtuns[0].click()
     }
 }

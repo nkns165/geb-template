@@ -14,6 +14,7 @@ class UserListPage extends Page{
         checkEnabled { $("input[name=enabled]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
+        deleteButtuns { $(".glyphicon-remove") }
     }
 
     public void addUser(String userName, String password, String mailAddress) {
@@ -26,5 +27,9 @@ class UserListPage extends Page{
 
     public boolean isUserCreationSuccessful() {
         return message.isDisplayed() && message.hasClass("alert-info")
+    }
+
+    public void deleteUser(int index){
+        deleteButtuns[index].click()
     }
 }
