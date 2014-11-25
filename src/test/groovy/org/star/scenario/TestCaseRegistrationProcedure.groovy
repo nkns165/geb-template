@@ -21,8 +21,8 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     private def scenario = "scenario_" + UUID.randomUUID()
 
     def setup() {
-        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "hiroko.tamagawa@shiftinc.jp")
-        teacher = new User(username: "admin", password: "admin", mailAddress: "hiroko.tamagawa@shiftinc.jp", browser:browser)
+        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com")
+        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", browser:browser)
     }
 
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる"() {
