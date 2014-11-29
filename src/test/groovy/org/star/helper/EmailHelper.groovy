@@ -37,7 +37,7 @@ class EmailHelper {
         if (folder.exists()) {
             folder.open(Folder.READ_ONLY)
             if (folder.getMessageCount() > 0) {
-                Message[] messages = folder.getMessages().reverse()[0..9]
+                Message[] messages = folder.getMessages().reverse().take(10)
                 if (messages.find { Message message -> message.getContent().contains(text) }) {
                     result = true
                 }
