@@ -33,6 +33,6 @@ class User {
 
     boolean receiveRegisteredEmail() {
         EmailHelper emailHelper = new EmailHelper(mailAddress: mailAddress, mailPassword: mailPassword)
-        emailHelper.containText(username)
+        emailHelper.containText(username, 5)
     }
 }

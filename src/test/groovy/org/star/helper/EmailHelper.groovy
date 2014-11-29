@@ -13,6 +13,15 @@ class EmailHelper {
     String mailAddress
     String mailPassword
 
+    public boolean containText(String text, int retryCount) {
+        if (retryCount == 0) {
+            return false
+        } else {
+            sleep(10000)
+            return containText(text, retryCount - 1)
+        }
+    }
+
     public boolean containText(String text) {
         String host = "imap.gmail.com"
         int port = 993
@@ -25,7 +34,6 @@ class EmailHelper {
         store.connect(host, port, mailAddress, mailPassword)
         Folder folder = store.getFolder(targetFolder)
 
-        sleep(10000) // TODO 要リファクタ タイムアウトとか設定出来るようにする
         boolean result = false
         if (folder.exists()) {
             folder.open(Folder.READ_ONLY)
