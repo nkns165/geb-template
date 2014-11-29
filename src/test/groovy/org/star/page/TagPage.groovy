@@ -15,7 +15,7 @@ class TagPage extends Page {
         addTagForm { $("form[role=form]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
-        deleteButtuns { $(".glyphicon-remove") }
+        deleteButtuns(required:false) { $(".glyphicon-remove") }
     }
 
     public void addTag(String name, String description) {

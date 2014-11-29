@@ -12,10 +12,10 @@ import org.star.page.UserListPage
  */
 class UserRegistration extends GebReportingSpec {
 
-    def userName
-    def password
-    def mailAddress
-    def mailPassword
+    String userName
+    String password
+    String mailAddress
+    String mailPassword
 
     def setup() {
         userName = "user_" + UUID.randomUUID()
@@ -51,12 +51,15 @@ class UserRegistration extends GebReportingSpec {
 
     def "ユーザー削除練習用"() {
         given:
-        User admin = new User(username: "admin", password: "admin", mailAddress: "hiroko.tamagawa@shiftinc.jp", browser: browser)
+        User admin = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
         when:
         to TopPage
         admin.login()
         header.openMenuUser()
         for (int i = 0; i < 100; i++) {
+            if (deleteButtuns.size() <= 5) {
+                break
+            }
             sleep(1500)
             deleteUser(5)
             sleep(500)

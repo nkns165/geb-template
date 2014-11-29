@@ -10,11 +10,11 @@ import org.star.page.UserListPage
  * Created by yoshimura on 2014/11/25.
  */
 class TestCaseOperationPractice extends GebReportingSpec {
-    def username
-    def password
-    def mailAddress
-    def testCaseName
-    def testCaseScenario
+    String username
+    String password
+    String mailAddress
+    String testCaseName
+    String testCaseScenario
 
     def setup() {
         username = "user_" + UUID.randomUUID()
@@ -38,7 +38,6 @@ class TestCaseOperationPractice extends GebReportingSpec {
         addUser(username, password, mailAddress)
         then: "登録完了メッセージを確認する"
         waitFor { message.isDisplayed() }
-//        sleep(5000)
         assert isUserCreationSuccessful()
         when: "ログアウトする"
         header.logout()

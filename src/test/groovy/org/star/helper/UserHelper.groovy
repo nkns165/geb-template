@@ -18,14 +18,15 @@ import javax.mail.Store
 class UserHelper {
 
     public static User createDefaultUser(Browser browser) {
-        def username = "user_" + UUID.randomUUID()
-        def password = UUID.randomUUID().toString()
-        def mailAddress = "stac2014tamagawa@gmail.com"
+        String username = "user_" + UUID.randomUUID()
+        String password = UUID.randomUUID().toString()
+        String mailAddress = "stac2014tamagawa@gmail.com"
+        String mailPassword = "tamagawa2014"
 
-        createUser(browser, username, password, mailAddress)
+        createUser(browser, username, password, mailAddress, mailPassword)
     }
 
-    public static User createUser(Browser browser, String username, String password, String mailAddress) {
+    public static User createUser(Browser browser, String username, String password, String mailAddress, String mailPassword) {
         TopPage topPage = browser.to TopPage
         topPage.login "admin", "admin"
         DashBoardPage dashBoardPage = browser.at DashBoardPage
@@ -36,33 +37,33 @@ class UserHelper {
         browser.waitFor { userListPage.message.isDisplayed() }
         userListPage.header.logout()
 
-        new User(username: username, password: password, mailAddress: mailAddress, browser: browser)
+        new User(username: username, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
     }
 
     public static String getBodyFromMail(String mailAddress, String mailPassword) {
-        String host = "imap.gmail.com";
-        int port = 993;
-        String targetFolder = "INBOX";
+        String host = "imap.gmail.com"
+        int port = 993
+        String targetFolder = "INBOX"
 
-        Properties properties = System.getProperties();
-        Session session = Session.getInstance(properties, null);
+        Properties properties = System.getProperties()
+        Session session = Session.getInstance(properties, null)
 
-        Store store = session.getStore("imaps");
-        store.connect(host, port, mailAddress, mailPassword);
-        Folder folder = store.getFolder(targetFolder);
+        Store store = session.getStore("imaps")
+        store.connect(host, port, mailAddress, mailPassword)
+        Folder folder = store.getFolder(targetFolder)
         if (folder.exists()) {
-            folder.open(Folder.READ_ONLY);
+            folder.open(Folder.READ_ONLY)
             if (folder.getMessageCount() > 0) {
                 for (Message message : folder.getMessages()) {
                     return message.getContent()
                 }
             } else {
-                throw new RuntimeException("Folder is empty");
+                throw new RuntimeException("Folder is empty")
             }
-            folder.close(false);
+            folder.close(false)
         } else {
             throw new FolderNotFoundException("Folder ${targetFolder} does not exist.")
         }
-        store.close();
+        store.close()
     }
 }

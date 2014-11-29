@@ -12,17 +12,17 @@ import org.star.page.TopPage
  */
 class TestCaseRegistrationProcedure extends GebReportingSpec {
     // user
-    def User slave
-    def User teacher
+    User slave
+    User teacher
     // test case
-    private def tag = "tag_" + UUID.randomUUID()
-    private def description = "description_" + UUID.randomUUID()
-    private def name = "name_" + UUID.randomUUID()
-    private def scenario = "scenario_" + UUID.randomUUID()
+    String tag = "tag_" + UUID.randomUUID()
+    String description = "description_" + UUID.randomUUID()
+    String name = "name_" + UUID.randomUUID()
+    String scenario = "scenario_" + UUID.randomUUID()
 
     def setup() {
-        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com")
-        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", browser: browser)
+        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
+        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる"() {
@@ -86,6 +86,9 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.openMenuTestCase()
         for (int i = 0; i < 100; i++) {
+            if (!deleteButtuns) {
+                break
+            }
             sleep(1500)
             deleteTestCase()
             sleep(500)
@@ -101,6 +104,9 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.openMenuTag()
         for (int i = 0; i < 100; i++) {
+            if (!deleteButtuns) {
+                break
+            }
             sleep(1500)
             deleteTag()
             sleep(500)

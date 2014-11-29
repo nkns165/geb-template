@@ -11,6 +11,7 @@ class User {
     String username
     String password
     String mailAddress
+    String mailPassword
     Browser browser
 
     def login() {

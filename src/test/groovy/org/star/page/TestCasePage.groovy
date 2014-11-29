@@ -24,7 +24,7 @@ class TestCasePage extends Page {
         buttonActionFilter { $("#filterPaneForm > div > div.buttons > span:nth-child(3) > input") }
         testCaseItems { moduleList TestCaseRow, $("#testCaseRow") }
         editButtons { $(".glyphicon-eye-open") }
-        deleteButtuns { $(".glyphicon-remove") }
+        deleteButtuns(required: false) { $(".glyphicon-remove") }
         // create
         message { $("div.alert") }
         // edit
