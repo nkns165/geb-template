@@ -1,6 +1,8 @@
 package org.star.domain
 
 import geb.Browser
+import org.star.helper.EmailHelper
+import org.star.helper.UserHelper
 import org.star.page.DashBoardPage
 import org.star.page.TopPage
 
@@ -22,5 +24,16 @@ class User {
     def logout() {
         browser.page.header.logout()
         browser.at TopPage
+    }
+
+    def addUser(User user) {
+        browser.page.header.openMenuUser()
+        browser.page.addUser(user.username, user.password, user.mailPassword)
+    }
+
+    boolean receiveRegisteredEmail() {
+        EmailHelper emailHelper = new EmailHelper(mailAddress: mailAddress, mailPassword: mailPassword)
+        emailHelper.containText(username)
+        //UserHelper.emailcontainText(mailAddress, mailPassword, username)
     }
 }

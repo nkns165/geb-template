@@ -39,31 +39,4 @@ class UserHelper {
 
         new User(username: username, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
     }
-
-    public static String getBodyFromMail(String mailAddress, String mailPassword) {
-        String host = "imap.gmail.com"
-        int port = 993
-        String targetFolder = "INBOX"
-
-        Properties properties = System.getProperties()
-        Session session = Session.getInstance(properties, null)
-
-        Store store = session.getStore("imaps")
-        store.connect(host, port, mailAddress, mailPassword)
-        Folder folder = store.getFolder(targetFolder)
-        if (folder.exists()) {
-            folder.open(Folder.READ_ONLY)
-            if (folder.getMessageCount() > 0) {
-                for (Message message : folder.getMessages()) {
-                    return message.getContent()
-                }
-            } else {
-                throw new RuntimeException("Folder is empty")
-            }
-            folder.close(false)
-        } else {
-            throw new FolderNotFoundException("Folder ${targetFolder} does not exist.")
-        }
-        store.close()
-    }
 }
