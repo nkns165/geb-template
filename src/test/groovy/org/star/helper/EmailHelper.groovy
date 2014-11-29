@@ -37,17 +37,9 @@ class EmailHelper {
         if (folder.exists()) {
             folder.open(Folder.READ_ONLY)
             if (folder.getMessageCount() > 0) {
-                int limit = 1
-                for (Message message : folder.getMessages().reverse()) {
-                    String content = (String) message.getContent(); // 手抜き
-                    if (content.contains(text)) {
-                        result = true
-                        break
-                    }
-                    limit++
-                    if (limit > 10) { // 最新から10個で打ち切る
-                        break
-                    }
+                Message[] messages = folder.getMessages().reverse()[0..9]
+                if (messages.find { Message message -> message.getContent().contains(text) }) {
+                    result = true
                 }
             }
             folder.close(false)
