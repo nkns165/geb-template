@@ -49,14 +49,14 @@ class UserRegistration extends GebReportingSpec {
         assert UserHelper.getBodyFromMail(mailAddress, mailPassword).contains(userName)
     }
 
-    def "ユーザー削除練習用"(){
+    def "ユーザー削除練習用"() {
         given:
-        User admin = new User(username: "admin", password: "admin", mailAddress: "hiroko.tamagawa@shiftinc.jp", browser:browser)
+        User admin = new User(username: "admin", password: "admin", mailAddress: "hiroko.tamagawa@shiftinc.jp", browser: browser)
         when:
         to TopPage
         admin.login()
         header.openMenuUser()
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             sleep(1500)
             deleteUser(5)
             sleep(500)

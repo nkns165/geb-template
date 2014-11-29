@@ -1,28 +1,30 @@
 package org.star.scenario
+
 import geb.spock.GebReportingSpec
 import org.star.page.DashBoardPage
 import org.star.page.TestCasePage
 import org.star.page.TopPage
 import org.star.page.UserListPage
+
 /**
  * Created by yoshimura on 2014/11/25.
  */
-class TestCaseOperationPractice  extends GebReportingSpec{
+class TestCaseOperationPractice extends GebReportingSpec {
     def username
     def password
     def mailAddress
     def testCaseName
     def testCaseScenario
 
-    def setup(){
-        username = "user_"+ UUID.randomUUID()
+    def setup() {
+        username = "user_" + UUID.randomUUID()
         password = "password_" + UUID.randomUUID()
         mailAddress = "yoshimura@yqs.jp"
         testCaseName = "TestCase_" + UUID.randomUUID()
         testCaseScenario = "Scenario" + UUID.randomUUID()
     }
 
-    def "新規ユーザを登録して、そのユーザでテストケースを登録する"(){
+    def "新規ユーザを登録して、そのユーザでテストケースを登録する"() {
         when: "管理者でログインする"
         to TopPage
         login "admin", "admin"
@@ -52,7 +54,7 @@ class TestCaseOperationPractice  extends GebReportingSpec{
         then: "テストケースページが表示される"
         at TestCasePage
         when: "テストケースを登録する。"
-        addTestCase(testCaseName,testCaseScenario, null)
+        addTestCase(testCaseName, testCaseScenario)
         then: "登録完了メッセージを確認する"
         assert isSuccessful()
         when: "ログアウトする"

@@ -8,8 +8,8 @@ import org.star.page.TagPage
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TestTagResistrationPractice extends GebReportingSpec{
-    def "タグ追加の練習"(){
+class TestTagResistrationPractice extends GebReportingSpec {
+    def "タグ追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)
         user.login()

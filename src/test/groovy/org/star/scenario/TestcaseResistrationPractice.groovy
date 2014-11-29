@@ -8,8 +8,8 @@ import org.star.page.TestCasePage
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TestcaseResistrationPractice extends GebReportingSpec{
-    def "テストケース追加の練習"(){
+class TestcaseResistrationPractice extends GebReportingSpec {
+    def "テストケース追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)
         user.login()
@@ -18,7 +18,7 @@ class TestcaseResistrationPractice extends GebReportingSpec{
         then:
         at TestCasePage
         when: "タグなしでテストケースを追加する"
-        addTestCaseWithoutTag("テストケース名", "テストケースシナリオ")
+        addTestCase("テストケース名", "テストケースシナリオ")
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         isSuccessful()
     }

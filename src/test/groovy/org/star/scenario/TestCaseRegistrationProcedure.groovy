@@ -22,7 +22,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
 
     def setup() {
         slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com")
-        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", browser:browser)
+        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", browser: browser)
     }
 
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる"() {
@@ -74,18 +74,18 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     }
 
     def "ユーザーの作成練習"() {
-       when: "下僕がログインする"
+        when: "下僕がログインする"
         slave.login()
         header.openMenuTag()
         then:
         true
     }
 
-    def "テストケース削除練習"(){
+    def "テストケース削除練習"() {
         when:
         teacher.login()
         header.openMenuTestCase()
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             sleep(1500)
             deleteTestCase()
             sleep(500)
@@ -96,11 +96,11 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         true
     }
 
-    def "タグ削除練習"(){
+    def "タグ削除練習"() {
         when:
         teacher.login()
         header.openMenuTag()
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             sleep(1500)
             deleteTag()
             sleep(500)

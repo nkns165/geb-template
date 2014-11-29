@@ -13,8 +13,8 @@ class LoginHeaderModule extends Module {
     static content = {
         menuAdmin { $("li.item-admin a") }
         menuUser(to: UserListPage) { $("li.item-secureUser a") }
-        menuTestCaseList(to: TestCasePage){ $("li.item-testCase a") }
-        menuTagList(to: TagPage){ $("li.item-tag a") }
+        menuTestCaseList(to: TestCasePage) { $("li.item-testCase a") }
+        menuTagList(to: TagPage) { $("li.item-tag a") }
         buttonLogout(to: TopPage) { $("#logout a") }
     }
 
@@ -24,11 +24,11 @@ class LoginHeaderModule extends Module {
         menuUser.click()
     }
 
-    public void openMenuTestCase(){
+    public void openMenuTestCase() {
         menuTestCaseList.click()
     }
 
-    public void openMenuTag(){
+    public void openMenuTag() {
         menuTagList.click()
     }
 

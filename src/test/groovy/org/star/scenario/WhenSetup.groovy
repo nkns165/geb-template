@@ -9,7 +9,7 @@ import org.star.page.*
 class WhenSetup extends GebReportingSpec {
 
     // 安全のために管理者は削除できなくなっている
-    def "追加されたユーザはユーザ管理できないし、管理者は管理者アカウントを削除できない"(){
+    def "追加されたユーザはユーザ管理できないし、管理者は管理者アカウントを削除できない"() {
         given: "トップページにアクセスする"
         to TopPage
         when: "管理者としてログインすると"

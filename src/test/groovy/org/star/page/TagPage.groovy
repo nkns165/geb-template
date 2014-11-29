@@ -6,7 +6,7 @@ import org.star.module.LoginHeaderModule
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TagPage extends Page{
+class TagPage extends Page {
     static url = "tag"
     static at = {
         $("h1").text() == "Tagリスト"
@@ -29,7 +29,7 @@ class TagPage extends Page{
         return message.isDisplayed() && message.hasClass("alert-info")
     }
 
-    public void deleteTag(){
+    public void deleteTag() {
         deleteButtuns[0].click()
     }
 }
