@@ -22,4 +22,22 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         isTagCreationSuccessful()
     }
+
+    /**
+     * このシナリオを上のものと別に追加する意味はあまりないですが、
+     * ログを確認するシナリオのサンプルとして新たに追加しました。
+     */
+    def "タグ追加の練習（ID確認まで行う）"() {
+        given: "一般ユーザでログインする"
+        User user = UserHelper.createDefaultUser(browser)
+        user.login()
+        when: "タグリスト画面を開く"
+        header.openMenuTag()
+        then:
+        at TagPage
+        when: "タグを追加する"
+        def tagId = createTag("タグ名" + UUID.randomUUID(), "説明")
+        then: "Tag詳細画面に正常登録のメッセージが表示される"
+        isTagCreationSuccessful(tagId)
+    }
 }
