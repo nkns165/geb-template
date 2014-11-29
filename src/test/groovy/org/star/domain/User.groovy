@@ -28,7 +28,7 @@ class User {
 
     def addUser(User user) {
         browser.page.header.openMenuUser()
-        browser.page.addUser(user.username, user.password, user.mailPassword)
+        browser.page.addUser(user.username, user.password, user.mailAddress)
     }
 
     boolean receiveRegisteredEmail() {

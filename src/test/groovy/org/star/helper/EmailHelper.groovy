@@ -14,11 +14,10 @@ class EmailHelper {
     String mailPassword
 
     public boolean containText(String text, int retryCount) {
-        if (retryCount == 0) {
+        if (retryCount < 0) {
             return false
         } else {
-            sleep(10000)
-            return containText(text, retryCount - 1)
+            containText(text) ?: {sleep(10000); containText(text, retryCount - 1)}.call()
         }
     }
 
