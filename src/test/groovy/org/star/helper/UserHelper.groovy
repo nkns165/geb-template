@@ -23,7 +23,7 @@ class UserHelper {
         def mailAddress = "stac2014tamagawa@gmail.com"
 
         createUser(browser, username, password, mailAddress)
-   }
+    }
 
     public static User createUser(Browser browser, String username, String password, String mailAddress) {
         TopPage topPage = browser.to TopPage
@@ -39,33 +39,30 @@ class UserHelper {
         new User(username: username, password: password, mailAddress: mailAddress, browser: browser)
     }
 
-    public static String getBodyFromMail(String mailAddress , String mailPassword){
+    public static String getBodyFromMail(String mailAddress, String mailPassword) {
         String host = "imap.gmail.com";
         int port = 993;
-        String user = mailAddress;
-        String password = mailPassword;
-        String target_folder = "INBOX";
+        String targetFolder = "INBOX";
 
-        Properties props = System.getProperties();
-        Session sess = Session.getInstance(props, null);
-//		sess.setDebug(true);
+        Properties properties = System.getProperties();
+        Session session = Session.getInstance(properties, null);
 
-        Store st = sess.getStore("imaps");
-        st.connect(host, port, user, password);
-        Folder fol = st.getFolder(target_folder);
-        if(fol.exists()){
-            fol.open(Folder.READ_ONLY);
-            if (fol.getMessageCount() > 0) {
-                for(Message m : fol.getMessages()){
-                    return m.getContent()
+        Store store = session.getStore("imaps");
+        store.connect(host, port, mailAddress, mailPassword);
+        Folder folder = store.getFolder(targetFolder);
+        if (folder.exists()) {
+            folder.open(Folder.READ_ONLY);
+            if (folder.getMessageCount() > 0) {
+                for (Message message : folder.getMessages()) {
+                    return message.getContent()
                 }
             } else {
                 throw new RuntimeException("Folder is empty");
             }
-            fol.close(false);
-        }else{
-            throw new FolderNotFoundException("Folder ${target_folder} does not exist.")
+            folder.close(false);
+        } else {
+            throw new FolderNotFoundException("Folder ${targetFolder} does not exist.")
         }
-        st.close();
+        store.close();
     }
 }
