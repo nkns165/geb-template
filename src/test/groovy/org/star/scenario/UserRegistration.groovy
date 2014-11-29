@@ -42,8 +42,6 @@ class UserRegistration extends GebReportingSpec {
         user.login()
         then: "ログイン後、ダッシュボードが開く"
         at DashBoardPage
-        //and: "adminメニューが表示されないことを確認する"
-        //assert header.menuAdmin().isDisplayed()
         and: "新着メールに新規登録したユーザー名が含まれることを確認する"
         user.receiveRegisteredEmail()
     }
