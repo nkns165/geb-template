@@ -18,12 +18,11 @@ class User {
 
     def login() {
         browser.page.login(username, password)
-        browser.at DashBoardPage
     }
 
     def logout() {
         browser.page.header.logout()
-        browser.at TopPage
+        //browser.at TopPage
     }
 
     def addUser(User user) {
