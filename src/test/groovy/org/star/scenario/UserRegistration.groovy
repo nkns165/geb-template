@@ -1,6 +1,7 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.Administrator
 import org.star.domain.User
 import org.star.page.DashBoardPage
 import org.star.page.TopPage
@@ -14,14 +15,14 @@ class UserRegistration extends GebReportingSpec {
     String password
     String mailAddress
     String mailPassword
-    User admin
+    Administrator admin
 
     def setup() {
         userName = "user_" + UUID.randomUUID()
         password = UUID.randomUUID().toString()
         mailAddress = "stac2014tamagawa@gmail.com"
         mailPassword = "tamagawa2014"
-        admin = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        admin = new Administrator(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     // 一般ユーザが登録できること

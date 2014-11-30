@@ -1,6 +1,7 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.Administrator
 import org.star.domain.User
 import org.star.page.DashBoardPage
 import org.star.page.TestCasePage
@@ -17,7 +18,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
     String mailPassword
     String testCaseName
     String testCaseScenario
-    User admin
+    Administrator admin
 
     def setup() {
         username = "user_" + UUID.randomUUID()
@@ -26,7 +27,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         mailPassword = "tamagawa2014"
         testCaseName = "TestCase_" + UUID.randomUUID()
         testCaseScenario = "Scenario" + UUID.randomUUID()
-        admin = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        admin = new Administrator(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     def "新規ユーザを登録して、そのユーザでテストケースを登録する"() {

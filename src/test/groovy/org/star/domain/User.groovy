@@ -22,12 +22,7 @@ class User {
 
     def logout() {
         browser.page.header.logout()
-        //browser.at TopPage
-    }
-
-    def addUser(User user) {
-        browser.page.header.openMenuUser()
-        browser.page.addUser(user.username, user.password, user.mailAddress)
+        true
     }
 
     boolean receiveRegisteredEmail() {

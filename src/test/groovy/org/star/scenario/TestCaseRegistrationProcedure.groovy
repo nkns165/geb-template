@@ -1,6 +1,7 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
+import org.star.domain.Administrator
 import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.DashBoardPage
@@ -13,7 +14,7 @@ import org.star.page.TopPage
 class TestCaseRegistrationProcedure extends GebReportingSpec {
     // user
     User slave
-    User teacher
+    Administrator teacher
     // test case
     String tag = "tag_" + UUID.randomUUID()
     String description = "description_" + UUID.randomUUID()
@@ -22,7 +23,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
 
     def setup() {
         slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
-        teacher = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        teacher = new Administrator(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     def "新規タグと関連づけたテストケースを下僕が起票して、先生がレビューして修正し、下僕に確認させる"() {
@@ -71,14 +72,6 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         searchByName("Equal To", "1_" + name)
         then: "シナリオが先生の更新どおりであることを確認する"
         testCaseItems[0].scenario == "修正"
-    }
-
-    def "ユーザーの作成練習"() {
-        when: "下僕がログインする"
-        slave.login()
-        header.openMenuTag()
-        then:
-        true
     }
 
     def "テストケース削除練習"() {
