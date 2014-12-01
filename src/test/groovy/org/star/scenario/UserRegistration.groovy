@@ -5,6 +5,7 @@ import org.star.domain.Administrator
 import org.star.domain.User
 import org.star.page.DashBoardPage
 import org.star.page.TopPage
+import org.star.page.UserListPage
 
 /**
  * Created by tamagawa on 2014/11/23.
@@ -29,21 +30,25 @@ class UserRegistration extends GebReportingSpec {
     def "管理者ユーザでログインして一般ユーザを登録できる"() {
         given: "管理者ユーザでログインする"
         to TopPage
-        admin.login()
+        login("admin", "admin")
         at DashBoardPage
+        when: "Secure Userを作成ページを開く"
+        header.openMenuUser()
+        then:
+        at UserListPage
         when: "新規ユーザを登録する"
-        User user = new User(username: userName, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
-        admin.addUser(user)
+        addUser(userName, password, mailAddress)
         then: "ユーザ一覧上で新規ユーザができたことが表示される"
         waitFor { message.isDisplayed() }
         isUserCreationSuccessful()
         when: "管理者ユーザがログアウトする"
-        admin.logout()
+        header.logout()
         and: "新規登録したユーザでログインする"
-        user.login()
+        login(userName, password)
         then: "ログイン後、ダッシュボードが開く"
         at DashBoardPage
         and: "新着メールに新規登録したユーザー名が含まれることを確認する"
+        User user = new User(username: userName, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
         user.receiveRegisteredEmail()
     }
 
