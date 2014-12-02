@@ -38,12 +38,12 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         header.openMenuTestCase()
         addTestCase("1_" + name, "1_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isSuccessful()
+        isTestCaseCreationSuccessful()
         when: "追加したタグでテストケースの2つ目を追加する"
         header.openMenuTestCase()
         addTestCase("2_" + name, "2_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isSuccessful()
+        isTestCaseCreationSuccessful()
         and: "下僕がログアウトする"
         slave.logout()
         when: "先生がログインする"
@@ -61,7 +61,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         when: "1つめのテストケースのシナリオを更新する"
         updateTestcase(0, "1_" + name, "修正", tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isSuccessful()
+        isTestCaseCreationSuccessful()
         and: "先生がログアウトする"
         teacher.logout()
         when: "下僕がログインする"

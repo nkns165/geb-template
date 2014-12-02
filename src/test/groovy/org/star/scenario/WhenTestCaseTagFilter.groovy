@@ -44,12 +44,12 @@ class WhenTestCaseTagFilter extends GebReportingSpec {
         at TestCasePage
         when:"作成したTagを指定したTestCaseを追加する"
         addTestCase("1_" + testCaseName, "1_" + testCaseScenario, tagName)
-        then:"TestCaseリストにTestCaseが追加される"
-        isSuccessful()      //TestCaseのチェックか分かりにくい
+        then: "Test Case詳細画面に正常登録のメッセージが表示される"
+        isTestCaseCreationSuccessful()
         when:"作成したTagを指定したTestCaseをもう1件追加する"
         addTestCase("2_" + testCaseName, "2_" + testCaseScenario, tagName)
-        then:"TestCaseリストにTestCaseが追加される"
-        isSuccessful()      //TestCaseのチェックか分かりにくい
+        then: "Test Case詳細画面に正常登録のメッセージが表示される"
+        isTestCaseCreationSuccessful()
         when:"TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
         then:"TestCase詳細ページに遷移する"
         and:"TestCase詳細ページに作成した2件のTestCaseのみ表示されていることを確認する"

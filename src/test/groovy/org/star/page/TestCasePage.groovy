@@ -44,7 +44,7 @@ class TestCasePage extends Page {
         testCaseForm.create().click()
     }
 
-    public boolean isSuccessful() {
+    public boolean isTestCaseCreationSuccessful() {
         waitFor { message.isDisplayed() }
         return message.isDisplayed() && message.hasClass("alert-info")
     }
