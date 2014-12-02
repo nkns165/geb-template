@@ -10,7 +10,7 @@ import org.star.page.TestCasePage
 /**
  * Created by urayama on 2014/12/01.
  */
-class WhenTestCaseTagFilter extends GebReportingSpec {
+class WhenFilteringTestCase extends GebReportingSpec {
     String tagName
     String testCaseName
     String testCaseScenario
@@ -51,6 +51,7 @@ class WhenTestCaseTagFilter extends GebReportingSpec {
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         isTestCaseCreationSuccessful()
         when:"TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
+        searchByTag(tagName)
         then:"TestCase詳細ページに遷移する"
         and:"TestCase詳細ページに作成した2件のTestCaseのみ表示されていることを確認する"
     }
