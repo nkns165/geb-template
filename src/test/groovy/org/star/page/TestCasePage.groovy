@@ -71,7 +71,7 @@ class TestCasePage extends Page {
 
     public void updateTestcase(int index, String name, String scenario, String[] tags) {
         edits[index].click()
-        sleep(1000) // TODO Fix これはダメが一旦別のリファクタリングのために入れる
+        waitFor { testCase.find("textarea", name: "name") } // TODO sleepよりwaitFor使うべきだが、もうちょっといい書き方ないか・・
         testCase.name = name
         sleep(1000)
         testCase.scenario = scenario
