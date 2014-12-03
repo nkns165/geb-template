@@ -11,28 +11,28 @@ import org.star.page.UserListPage
  */
 class LoginHeaderModule extends Module {
     static content = {
-        menuAdmin { $("li.item-admin a") }
-        menuUser(to: UserListPage) { $("li.item-secureUser a") }
-        menuTestCaseList(to: TestCasePage) { $("li.item-testCase a") }
-        menuTagList(to: TagPage) { $("li.item-tag a") }
-        buttonLogout(to: TopPage) { $("#logout a") }
+        admin { $("li.item-admin a") }
+        user(to: UserListPage) { $("li.item-secureUser a") }
+        testCaseList(to: TestCasePage) { $("li.item-testCase a") }
+        tagList(to: TagPage) { $("li.item-tag a") }
+        logout(to: TopPage) { $("#logout a") }
     }
 
     public void openMenuUser() {
-        menuAdmin.click()
-        waitFor { menuUser.isDisplayed() }
-        menuUser.click()
+        admin.click()
+        waitFor { user.isDisplayed() }
+        user.click()
     }
 
     public void openMenuTestCase() {
-        menuTestCaseList.click()
+        testCaseList.click()
     }
 
     public void openMenuTag() {
-        menuTagList.click()
+        tagList.click()
     }
 
     public void logout() {
-        buttonLogout.click()
+        logout.click()
     }
 }

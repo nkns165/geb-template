@@ -6,7 +6,6 @@ import org.star.domain.User
 import org.star.page.DashBoardPage
 import org.star.page.TestCasePage
 import org.star.page.TopPage
-import org.star.page.UserListPage
 
 /**
  * Created by yoshimura on 2014/11/25.
@@ -27,7 +26,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         mailPassword = "tamagawa2014"
         testCaseName = "TestCase_" + UUID.randomUUID()
         testCaseScenario = "Scenario" + UUID.randomUUID()
-        admin = new Administrator(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        admin = new Administrator(userName: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     def "新規ユーザを登録して、そのユーザでテストケースを登録する"() {
@@ -37,7 +36,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         then: "ダッシュボードが表示される"
         at DashBoardPage
         when: "ユーザを登録する"
-        User user = new User(username: username, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
+        User user = new User(userName: username, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
         admin.addUser(user)
         then: "登録完了メッセージを確認する"
         waitFor { message.isDisplayed() }

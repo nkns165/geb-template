@@ -5,7 +5,7 @@ import org.star.page.DashBoardPage
 
 class NotLoginHeaderModule extends Module {
     static content = {
-        name { $("input", name: "j_username") }
+        userName { $("input", name: "j_username") }
         password { $("input", name: "j_password") }
         login(to: DashBoardPage) {
             $("input", value: "Login")

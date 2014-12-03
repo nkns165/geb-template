@@ -4,7 +4,6 @@ import geb.Page
 import org.star.module.LoginHeaderModule
 
 import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 /**
  * Created by itagakishintarou on 2014/11/23.
@@ -15,16 +14,16 @@ class TagPage extends Page {
         $("h1").text() == "Tagリスト"
     }
     static content = {
-        addTagForm { $("form[role=form]") }
+        addTag { $("form[role=form]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
-        deleteButtuns(required:false) { $(".glyphicon-remove") }
+        deletes(required: false) { $(".glyphicon-remove") }
     }
 
     public void addTag(String name, String description) {
-        addTagForm.name = name
-        addTagForm.description = description
-        addTagForm.create().click()
+        addTag.name = name
+        addTag.description = description
+        addTag.create().click()
     }
 
     public String createTag(String name, String description) {
@@ -48,6 +47,6 @@ class TagPage extends Page {
     }
 
     public void deleteTag() {
-        deleteButtuns[0].click()
+        deletes[0].click()
     }
 }

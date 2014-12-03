@@ -8,7 +8,7 @@ import org.star.page.TestCasePage
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TestcaseRegistrationPractice extends GebReportingSpec {
+class TestCaseRegistrationPractice extends GebReportingSpec {
     def "テストケース追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)

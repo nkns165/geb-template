@@ -1,10 +1,6 @@
 package org.star.helper
 
-import javax.mail.Folder
-import javax.mail.FolderNotFoundException
-import javax.mail.Message
-import javax.mail.Session
-import javax.mail.Store
+import javax.mail.*
 
 /**
  * Created by kenichiro_ota on 14/11/29.
@@ -17,7 +13,7 @@ class EmailHelper {
         if (retryCount < 0) {
             return false
         } else {
-            containText(text) ?: {sleep(10000); containText(text, retryCount - 1)}.call()
+            containText(text) ?: { sleep(10000); containText(text, retryCount - 1) }.call()
         }
     }
 

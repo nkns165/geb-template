@@ -1,12 +1,10 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
-import org.star.domain.Administrator
 import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.DashBoardPage
 import org.star.page.TopPage
-
 
 /**
  * Created by kenichiro_ota on 14/11/23.
@@ -78,7 +76,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.openMenuTestCase()
         for (int i = 0; i < 100; i++) {
-            if (!deleteButtuns) {
+            if (!deletes) {
                 break
             }
             sleep(1500)
@@ -96,7 +94,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.openMenuTag()
         for (int i = 0; i < 100; i++) {
-            if (!deleteButtuns) {
+            if (!deletes) {
                 break
             }
             sleep(1500)

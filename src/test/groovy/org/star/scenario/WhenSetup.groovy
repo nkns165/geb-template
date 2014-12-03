@@ -1,7 +1,8 @@
 package org.star.scenario
 
 import geb.spock.GebReportingSpec
-import org.star.page.*
+import org.star.page.DashBoardPage
+import org.star.page.TopPage
 
 /**
  * アプリケーションをデプロイ後に利用し始めるときの環境構築を定義する

@@ -23,7 +23,7 @@ class UserRegistration extends GebReportingSpec {
         password = UUID.randomUUID().toString()
         mailAddress = "stac2014tamagawa@gmail.com"
         mailPassword = "tamagawa2014"
-        admin = new Administrator(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        admin = new Administrator(userName: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
     }
 
     // 一般ユーザが登録できること
@@ -48,19 +48,19 @@ class UserRegistration extends GebReportingSpec {
         then: "ログイン後、ダッシュボードが開く"
         at DashBoardPage
         and: "新着メールに新規登録したユーザー名が含まれることを確認する"
-        User user = new User(username: userName, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
+        User user = new User(userName: userName, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
         user.receiveRegisteredEmail()
     }
 
     def "ユーザー削除練習用"() {
         given:
-        User admin = new User(username: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
+        User admin = new User(userName: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
         when:
         to TopPage
         admin.login()
         header.openMenuUser()
         for (int i = 0; i < 100; i++) {
-            if (deleteButtuns.size() <= 5) {
+            if (deletes.size() <= 5) {
                 break
             }
             sleep(1500)

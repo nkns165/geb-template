@@ -12,7 +12,7 @@ class TopPage extends Page {
     }
 
     def login(username, password) {
-        header.name = username
+        header.userName = username
         header.password = password
         header.login.click()
     }

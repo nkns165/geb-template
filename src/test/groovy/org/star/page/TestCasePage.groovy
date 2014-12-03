@@ -14,7 +14,7 @@ class TestCasePage extends Page {
     }
     static content = {
         header { module LoginHeaderModule }
-        testCaseForm { $("form[role=form]") }
+        testCase { $("form[role=form]") }
         // list
         filter { $("a", text: "Filter Me") }
         filterOpName { $("#filter\\2e op\\2e name") }
@@ -23,12 +23,12 @@ class TestCasePage extends Page {
         filterTagsName { $("#tags\\2e name") }
         buttonActionFilter { $("#filterPaneForm > div > div.buttons > span:nth-child(3) > input") }
         testCaseItems { moduleList TestCaseRow, $("#testCaseRow") }
-        editButtons { $(".glyphicon-eye-open") }
-        deleteButtuns(required: false) { $(".glyphicon-remove") }
+        edits { $(".glyphicon-eye-open") }
+        deletes(required: false) { $(".glyphicon-remove") }
         // create
         message { $("div.alert") }
         // edit
-        buttonUpdate { $(".btn-primary", name: "update") }
+        update { $(".btn-primary", name: "update") }
     }
 
     public void addTestCase(String name, String scenario) {
@@ -36,12 +36,12 @@ class TestCasePage extends Page {
     }
 
     public void addTestCase(String name, String scenario, String tag) {
-        testCaseForm.name = name
-        testCaseForm.scenario = scenario
+        testCase.name = name
+        testCase.scenario = scenario
         if (tag != null) {
-            testCaseForm.tags = tag
+            testCase.tags = tag
         }
-        testCaseForm.create().click()
+        testCase.create().click()
     }
 
     public boolean isTestCaseCreationSuccessful() {
@@ -70,21 +70,22 @@ class TestCasePage extends Page {
     }
 
     public void updateTestcase(int index, String name, String scenario, String[] tags) {
-        editButtons[index].click()
-        testCaseForm.name = name
+        edits[index].click()
+        sleep(1000) // TODO Fix これはダメが一旦別のリファクタリングのために入れる
+        testCase.name = name
         sleep(1000)
-        testCaseForm.scenario = scenario
+        testCase.scenario = scenario
         sleep(1000)
         if (tags.size() > 1) {
-            testCaseForm.tags = tags
+            testCase.tags = tags
         } else {
-            testCaseForm.tags = tags[0]
+            testCase.tags = tags[0]
         }
         sleep(1000)
-        buttonUpdate.click()
+        update.click()
     }
 
     public void deleteTestCase() {
-        deleteButtuns[0].click()
+        deletes[0].click()
     }
 }

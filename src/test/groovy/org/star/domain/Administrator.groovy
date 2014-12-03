@@ -6,6 +6,6 @@ package org.star.domain
 class Administrator extends User {
     def addUser(User user) {
         browser.page.header.openMenuUser()
-        browser.page.addUser(user.username, user.password, user.mailAddress)
+        browser.page.addUser(user.userName, user.password, user.mailAddress)
     }
 }

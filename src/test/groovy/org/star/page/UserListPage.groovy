@@ -14,7 +14,7 @@ class UserListPage extends Page {
         checkEnabled { $("input[name=enabled]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
-        deleteButtuns { $(".glyphicon-remove") }
+        deletes { $(".glyphicon-remove") }
     }
 
     public void addUser(String userName, String password, String mailAddress) {
@@ -30,6 +30,6 @@ class UserListPage extends Page {
     }
 
     public void deleteUser(int index) {
-        deleteButtuns[index].click()
+        deletes[index].click()
     }
 }
