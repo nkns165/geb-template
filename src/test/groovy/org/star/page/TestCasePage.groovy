@@ -69,7 +69,7 @@ class TestCasePage extends Page {
         }
     }
 
-    public void updateTestcase(int index, String name, String scenario, String[] tags) {
+    public void updateTestCase(int index, String name, String scenario, String[] tags) {
         edits[index].click()
         waitFor { testCase.find("textarea", name: "name") } // TODO sleepよりwaitFor使うべきだが、もうちょっといい書き方ないか・・
         testCase.name = name
