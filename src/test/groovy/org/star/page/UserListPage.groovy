@@ -6,7 +6,7 @@ import org.star.module.LoginHeaderModule
 class UserListPage extends Page {
     static url = "secureUser"
     static at = {
-        $("h1").text() == "Secure Userリスト"
+        $("h1").text().contains("Secure User")
     }
 
     static content = {

@@ -11,7 +11,7 @@ import java.util.regex.Matcher
 class TagPage extends Page {
     static url = "tag"
     static at = {
-        $("h1").text() == "Tagリスト"
+        $("h1").text().contains("Tag")
     }
     static content = {
         addTag { $("form[role=form]") }

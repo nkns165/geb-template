@@ -10,7 +10,7 @@ import org.star.module.TestCaseRow
 class TestCasePage extends Page {
     static url = "testCase"
     static at = {
-        $("h1").text() == "Test Caseリスト"
+        $("h1").text().contains("Test Case")
     }
     static content = {
         header { module LoginHeaderModule }
