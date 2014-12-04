@@ -40,7 +40,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         admin.addUser(user)
         then: "登録完了メッセージを確認する"
         waitFor { message.isDisplayed() }
-        isUserCreationSuccessful()
+        UserCreationIsSuccessful()
         when: "ログアウトする"
         admin.logout()
         then: "トップページが表示される。"
@@ -57,7 +57,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         when: "テストケースを登録する。"
         addTestCase(testCaseName, testCaseScenario)
         then: "登録完了メッセージを確認する"
-        assert isTestCaseCreationSuccessful()
+        assert TestCaseCreationIsSuccessful()
         when: "ログアウトする"
         user.logout()
         then: "トップページが表示される。"

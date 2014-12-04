@@ -25,7 +25,7 @@ class UserListPage extends Page {
         addUserForm.create().click()
     }
 
-    public boolean isUserCreationSuccessful() {
+    public boolean UserCreationIsSuccessful() {
         return message.isDisplayed() && message.hasClass("alert-info")
     }
 

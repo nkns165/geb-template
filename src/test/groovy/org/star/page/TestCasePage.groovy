@@ -44,7 +44,7 @@ class TestCasePage extends Page {
         testCase.create().click()
     }
 
-    public boolean isTestCaseCreationSuccessful() {
+    public boolean TestCaseCreationIsSuccessful() {
         waitFor { message.isDisplayed() }
         return message.isDisplayed() && message.hasClass("alert-info")
     }
@@ -71,7 +71,7 @@ class TestCasePage extends Page {
 
     public void updateTestCase(int index, String name, String scenario, String[] tags) {
         edits[index].click()
-        waitFor { testCase.find("textarea", name: "name") } // TODO sleepよりwaitFor使うべきだが、もうちょっといい書き方ないか・・
+        sleep(1000) // 今の作りだとformのHTMLを非同期で書き換え当ているため、アプリケーション側にJavaScriptの終了オブザーバーとか作らないとSleepで待つしかない
         testCase.name = name
         sleep(1000)
         testCase.scenario = scenario

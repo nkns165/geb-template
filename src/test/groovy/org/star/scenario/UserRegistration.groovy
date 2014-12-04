@@ -40,7 +40,7 @@ class UserRegistration extends GebReportingSpec {
         addUser(userName, password, mailAddress)
         then: "ユーザ一覧上で新規ユーザができたことが表示される"
         waitFor { message.isDisplayed() }
-        isUserCreationSuccessful()
+        UserCreationIsSuccessful()
         when: "管理者ユーザがログアウトする"
         header.logout()
         and: "新規登録したユーザでログインする"

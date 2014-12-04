@@ -35,14 +35,14 @@ class TagPage extends Page {
         return tagIdMatcher[(int) tagIdMatcher.size() - 1][1]
     }
 
-    public boolean isTagCreationSuccessful() {
+    public boolean TagCreationIsSuccessful() {
         waitFor { message.isDisplayed() }
         return message.isDisplayed() && message.hasClass("alert-info")
     }
 
-    public boolean isTagCreationSuccessful(String tagId) {
+    public boolean TagCreationIsSuccessful(String tagId) {
         println message.text()
-        return isTagCreationSuccessful() &&
+        return TagCreationIsSuccessful() &&
                 message.text().contains("Tag(id:${tagId})を作成しました。")
     }
 

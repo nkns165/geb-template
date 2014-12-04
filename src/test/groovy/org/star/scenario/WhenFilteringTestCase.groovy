@@ -37,7 +37,7 @@ class WhenFilteringTestCase extends GebReportingSpec {
         when: "Tagを追加する"
         addTag(tagName, "説明")
         then: "Tagが追加される"
-        isTagCreationSuccessful()
+        TagCreationIsSuccessful()
         when: "TestCaseページを開く"
         header.openMenuTestCase()
         //to TestCasePage
@@ -46,12 +46,12 @@ class WhenFilteringTestCase extends GebReportingSpec {
         when: "作成したTagを指定したTestCaseを追加する"
         addTestCase("1_" + testCaseName, "1_" + testCaseScenario, tagName)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isTestCaseCreationSuccessful()
+        TestCaseCreationIsSuccessful()
         when: "作成したTagを指定したTestCaseをもう1件追加する"
         header.openMenuTestCase()
         addTestCase("2_" + testCaseName, "2_" + testCaseScenario, tagName)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
-        isTestCaseCreationSuccessful()
+        TestCaseCreationIsSuccessful()
         when: "TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
         header.openMenuTestCase()
         searchByTag("Equal To", tagName)
