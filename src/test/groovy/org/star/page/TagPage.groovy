@@ -2,6 +2,7 @@ package org.star.page
 
 import geb.Page
 import org.star.module.LoginHeaderModule
+import org.star.module.TestTagRow
 
 import java.util.regex.Matcher
 
@@ -17,7 +18,15 @@ class TagPage extends Page {
         addTag { $("form[role=form]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
+        testTagItems { moduleList TestTagRow, $("div.table-responsive tbody > tr") }
         deletes(required: false) { $(".glyphicon-remove") }
+
+        filterMe {$("a", text:"Filter Me")}
+        nameFilterOperation {$("select", id:"filter.op.name")}
+        descriptionFilterOperation {$("select", id:"filter.op.description")}
+        nameFilter {$("input", name:"filter.name")}
+        descriptionFilter {$("input", name:"filter.description")}
+        applyFilter {$("input", value:"Apply")}
     }
 
     public void addTag(String name, String description) {
@@ -49,4 +58,25 @@ class TagPage extends Page {
     public void deleteTag() {
         deletes[0].click()
     }
+
+    public boolean TagDeletionIsSuccessful(){
+        waitFor { message.isDisplayed()}
+        return message.isDisplayed() && message.text().contains("削除しました。")
+    }
+
+
+    public void filterByName(String option, String name) {
+        filterMe.click()
+        nameFilterOperation = option
+        nameFilter = name
+        applyFilter.click()
+    }
+
+    public void filterByDescription(String option, String description) {
+        filterMe.click()
+        descriptionFilterOperation = option
+        descriptionFilter = description
+        applyFilter.click()
+    }
+
 }
