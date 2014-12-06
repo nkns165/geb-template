@@ -12,6 +12,7 @@ class TestCasePage extends Page {
     static at = {
         $("h1").text().contains("Test Case")
     }
+    static final String testCaseDetailHeadingText = "Test Case詳細"
     static content = {
         header { module LoginHeaderModule }
         testCase { $("form[role=form]") }
@@ -76,7 +77,7 @@ class TestCasePage extends Page {
 
     public void updateTestCase(int index, String name, String scenario, List<String> tags) {
         edits[index].click()
-        waitFor { testCaseHeading.text() == "Test Case詳細" }
+        waitFor { testCaseHeading.text() == testCaseDetailHeadingText }
         testCase.name = name
         testCase.scenario = scenario
         if (tags.size() > 1) {
