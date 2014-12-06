@@ -15,6 +15,7 @@ class TestCasePage extends Page {
     static content = {
         header { module LoginHeaderModule }
         testCase { $("form[role=form]") }
+        testCaseHeading { $("#form h1") }
         // list
         filter { $("a", text: "Filter Me") }
         filterOpName { $("#filter\\2e op\\2e name") }
@@ -75,17 +76,14 @@ class TestCasePage extends Page {
 
     public void updateTestCase(int index, String name, String scenario, List<String> tags) {
         edits[index].click()
-        sleep(1000) // 今の作りだとformのHTMLを非同期で書き換え当ているため、アプリケーション側にJavaScriptの終了オブザーバーとか作らないとSleepで待つしかない
+        waitFor { testCaseHeading.text() == "Test Case詳細" }
         testCase.name = name
-        sleep(1000)
         testCase.scenario = scenario
-        sleep(1000)
         if (tags.size() > 1) {
             testCase.tags = tags
         } else {
             testCase.tags = tags[0]
         }
-        sleep(1000)
         update.click()
     }
 
