@@ -10,7 +10,7 @@ class TestTagRow  extends Module{
         cell { $("td", it) }
         name { cell(0).text() }
         description { cell(1).text() }
-        editButton { $(".glyphicon-eye-open") }
-        deleteButton(required: false) { $(".glyphicon-remove") }
+        edit { cell(2).$("a", 0) }
+        delete { cell(2)$("a", 1) }
     }
 }

@@ -19,8 +19,6 @@ class TagPage extends Page {
         message { $("div.alert") }
         header { module LoginHeaderModule }
         testTagItems { moduleList TestTagRow, $("div.table-responsive tbody > tr") }
-        deletes(required: false) { $(".glyphicon-remove") }
-
         filterMe {$("a", text:"Filter Me")}
         nameFilterOperation {$("select", id:"filter.op.name")}
         descriptionFilterOperation {$("select", id:"filter.op.description")}
@@ -56,7 +54,7 @@ class TagPage extends Page {
     }
 
     public void deleteTag() {
-        deletes[0].click()
+        testTagItems[0].delete.click()
     }
 
     public boolean TagDeletionIsSuccessful(){

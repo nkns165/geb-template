@@ -26,8 +26,6 @@ class TestCasePage extends Page {
         next(wait:true, required: false){$(".nextLink")}
         buttonActionFilter { $("#filterPaneForm > div > div.buttons > span:nth-child(3) > input") }
         testCaseItems { moduleList TestCaseRow, $("#testCaseRow") }
-        edits { $(".glyphicon-eye-open") }
-        deletes(required: false) { $(".glyphicon-remove") }
         // create
         message { $("div.alert") }
         // edit
@@ -82,7 +80,7 @@ class TestCasePage extends Page {
     }
 
     public void updateTestCase(int index, String name, String scenario, List<String> tags) {
-        edits[index].click()
+        testCaseItems[index].edit.click()
         waitFor { testCaseHeading.text() == testCaseDetailHeadingText }
         testCase.name = name
         testCase.scenario = scenario
@@ -95,6 +93,6 @@ class TestCasePage extends Page {
     }
 
     public void deleteTestCase() {
-        deletes[0].click()
+        testCaseItems[0].delete.click()
     }
 }

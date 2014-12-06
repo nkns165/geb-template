@@ -11,5 +11,7 @@ class TestCaseRow extends Module {
         name { cell(0).text() }
         scenario { cell(1).text() }
         tags { cell(2).text() }
+        edit { cell(3).$("a", 0) }
+        delete { cell(3).$("a", 1) }
     }
 }

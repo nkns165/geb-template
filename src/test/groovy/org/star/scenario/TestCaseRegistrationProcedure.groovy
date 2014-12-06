@@ -76,7 +76,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.testCase.click()
         for (int i = 0; i < 10; i++) {
-            if (!deletes) {
+            if (!testCaseItems) {
                 break
             }
             sleep(1500)
@@ -94,7 +94,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         header.testTag.click()
         for (int i = 0; i < 10; i++) {
-            if (!deletes) {
+            if (!testTagItems) {
                 break
             }
             sleep(1500)
