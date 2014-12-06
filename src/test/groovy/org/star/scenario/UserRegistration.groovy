@@ -33,7 +33,7 @@ class UserRegistration extends GebReportingSpec {
         login("admin", "admin")
         at DashBoardPage
         when: "Secure Userを作成ページを開く"
-        header.openMenuUser()
+        header.admin.user.click()
         then:
         at UserListPage
         when: "新規ユーザを登録する"
@@ -42,7 +42,7 @@ class UserRegistration extends GebReportingSpec {
         waitFor { message.isDisplayed() }
         UserCreationIsSuccessful()
         when: "管理者ユーザがログアウトする"
-        header.logout()
+        header.logout.click()
         and: "新規登録したユーザでログインする"
         login(userName, password)
         then: "ログイン後、ダッシュボードが開く"
@@ -58,8 +58,8 @@ class UserRegistration extends GebReportingSpec {
         when:
         to TopPage
         admin.login()
-        header.openMenuUser()
-        for (int i = 0; i < 100; i++) {
+        header.admin.user.click()
+        for (int i = 0; i < 10; i++) {
             if (deletes.size() <= 5) {
                 break
             }

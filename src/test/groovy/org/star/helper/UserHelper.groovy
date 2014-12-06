@@ -25,12 +25,12 @@ class UserHelper {
         TopPage topPage = browser.to TopPage
         topPage.login "admin", "admin"
         DashBoardPage dashBoardPage = browser.at DashBoardPage
-        dashBoardPage.header.openMenuUser()
+        dashBoardPage.header.admin.user.click()
 
         UserListPage userListPage = browser.at UserListPage
         userListPage.addUser(username, password, mailAddress)
         browser.waitFor { userListPage.message.isDisplayed() }
-        userListPage.header.logout()
+        userListPage.header.logout.click()
 
         new User(userName: username, password: password, mailAddress: mailAddress, mailPassword: mailPassword, browser: browser)
     }

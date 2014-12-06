@@ -18,7 +18,7 @@ class User {
     }
 
     def logout() {
-        browser.page.header.logout()
+        browser.page.header.logout.click()
         true
     }
 

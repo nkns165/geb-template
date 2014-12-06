@@ -23,13 +23,13 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "タグを追加する"
-        header.openMenuTag()
+        header.testTag.click()
         createTag(tagName, tagDescription)
         then: "タグの登録に成功する"
         assert TagCreationIsSuccessful()
 
         when: "登録したテストタグを検索する"
-        header.openMenuTag()
+        header.testTag.click()
         filterByName("Equal To", tagName)
         then: "削除をクリックする"
         def list = testTagItems
@@ -44,13 +44,13 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "タグを追加する"
-        header.openMenuTag()
+        header.testTag.click()
         createTag(tagName, tagDescription)
         then: "タグの登録に成功する"
         assert TagCreationIsSuccessful()
 
         when: "登録したタグを持つテストケースを追加する"
-        header.openMenuTestCase()
+        header.testCase.click()
         def testCaseName = "testCase_" + UUID.randomUUID()
         def testCaseScenario = "Scenario_tag_" + UUID.randomUUID()
         createTestCase(testCaseName, testCaseScenario, tagName)
@@ -58,7 +58,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         assert TestCaseCreationIsSuccessful()
 
         when: "メニューからテストタグをクリックする"
-        header.openMenuTag()
+        header.testTag.click()
         then: "テストタグページが表示される"
         at TagPage
         when: "登録したテストタグを検索する"

@@ -45,13 +45,12 @@ class TestCaseOperationPractice extends GebReportingSpec {
         admin.logout()
         then: "トップページが表示される。"
         at TopPage
-
         when: "登録したユーザでログインする"
         user.login()
         then: "ログインできてダッシュボードが表示される。"
         at DashBoardPage
         when: "テストケースページを表示する"
-        header.openMenuTestCase()
+        header.testCase.click()
         then: "テストケースページが表示される"
         at TestCasePage
         when: "テストケースを登録する。"
@@ -67,11 +66,11 @@ class TestCaseOperationPractice extends GebReportingSpec {
         then: "ダッシュボードが表示される"
         at DashBoardPage
         when: "テストケースページを開く"
-        header.openMenuTestCase()
+        header.testCase.click()
         then: "テストケースページが開く"
         at TestCasePage
         then: "登録されたテストケースが参照できる"
-        searchTestCases(testCaseName, testCaseScenario, "").length == 1
+        searchTestCases(name:testCaseName, scenario:testCaseScenario).length == 1
         when: "ログアウトする"
         admin.logout()
         then: "トップページが表示される"

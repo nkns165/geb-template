@@ -14,7 +14,7 @@ class TestCaseRegistrationPractice extends GebReportingSpec {
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "テストケースリスト画面を開く"
-        header.openMenuTestCase()
+        header.testCase.click()
         then:
         at TestCasePage
         when: "タグなしでテストケースを追加する"

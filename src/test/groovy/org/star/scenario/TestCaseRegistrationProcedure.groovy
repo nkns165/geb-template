@@ -28,17 +28,17 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         given: "下僕がログインする"
         slave.login()
         when: "タグを追加する"
-        header.openMenuTag()
+        header.testTag.click()
         createTag(tag, description)
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful()
         when: "追加したタグでテストケースの1つ目を追加する"
-        header.openMenuTestCase()
+        header.testCase.click()
         createTestCase("1_" + name, "1_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "追加したタグでテストケースの2つ目を追加する"
-        header.openMenuTestCase()
+        header.testCase.click()
         createTestCase("2_" + name, "2_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
@@ -49,7 +49,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         teacher.login()
         and: "追加したタグでテストケースを検索する"
         at DashBoardPage
-        header.openMenuTestCase()
+        header.testCase.click()
         filterByTag("Equal To", tag)
         then: "下僕が登録した2つのテストケースがリストに表示される"
         def list = searchTestCases(tags: [tag])
@@ -65,7 +65,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         when: "下僕がログインする"
         slave.login()
         and: "テストケース名で更新したテストケースを検索する"
-        header.openMenuTestCase()
+        header.testCase.click()
         filterByName("Equal To", "1_" + name)
         then: "シナリオが先生の更新どおりであることを確認する"
         testCaseItems[0].scenario == "修正"
@@ -74,8 +74,8 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     def "テストケース削除練習"() {
         when:
         teacher.login()
-        header.openMenuTestCase()
-        for (int i = 0; i < 100; i++) {
+        header.testCase.click()
+        for (int i = 0; i < 10; i++) {
             if (!deletes) {
                 break
             }
@@ -92,8 +92,8 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
     def "タグ削除練習"() {
         when:
         teacher.login()
-        header.openMenuTag()
-        for (int i = 0; i < 100; i++) {
+        header.testTag.click()
+        for (int i = 0; i < 10; i++) {
             if (!deletes) {
                 break
             }

@@ -14,7 +14,7 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "タグリスト画面を開く"
-        header.openMenuTag()
+        header.testTag.click()
         then:
         at TagPage
         when: "タグを追加する"
@@ -32,7 +32,7 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         User user = UserHelper.createDefaultUser(browser)
         user.login()
         when: "タグリスト画面を開く"
-        header.openMenuTag()
+        header.testTag.click()
         then:
         at TagPage
         when: "タグを追加する"

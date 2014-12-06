@@ -31,7 +31,7 @@ class WhenFilteringTestCase extends GebReportingSpec {
         then: "ダッシュボードが表示される"
         at DashBoardPage
         when: "Tagページを開く"
-        header.openMenuTag()
+        header.testTag.click()
         then: "Tagページが表示される"
         at TagPage
         when: "Tagを追加する"
@@ -39,7 +39,7 @@ class WhenFilteringTestCase extends GebReportingSpec {
         then: "Tagが追加される"
         TagCreationIsSuccessful()
         when: "TestCaseページを開く"
-        header.openMenuTestCase()
+        header.testCase.click()
         //to TestCasePage
         then: "TestCaseページが表示される"
         at TestCasePage
@@ -48,12 +48,12 @@ class WhenFilteringTestCase extends GebReportingSpec {
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "作成したTagを指定したTestCaseをもう1件追加する"
-        header.openMenuTestCase()
+        header.testCase.click()
         createTestCase("2_" + testCaseName, "2_" + testCaseScenario, tagName)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
-        header.openMenuTestCase()
+        header.testCase.click()
         filterByTag("Equal To", tagName)
         then: "TestCase詳細ページに遷移する"
         and: "TestCase詳細ページに作成した2件のTestCaseのみ表示されていることを確認する"
