@@ -64,6 +64,10 @@ class TagPage extends Page {
         return message.isDisplayed() && message.text().contains("削除しました。")
     }
 
+    public boolean TagDeletionIsFailure(){
+        waitFor { message.isDisplayed()}
+        return message.isDisplayed() && message.text().contains("削除できませんでした。")
+    }
 
     public void filterByName(String option, String name) {
         filterMe.click()

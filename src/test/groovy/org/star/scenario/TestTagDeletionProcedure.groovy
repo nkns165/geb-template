@@ -26,7 +26,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         header.openMenuTag()
         addTag(tagName, tagDescription)
         then: "タグの登録に成功する"
-        TagCreationIsSuccessful()
+        assert TagCreationIsSuccessful()
 
         when: "登録したテストタグを検索する"
         header.openMenuTag()
@@ -36,7 +36,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         list.size == 1
         withConfirm {list[0].deleteButton.click()}
         then: "削除しましたメッセージが表示される"
-        TagDeletionIsSuccessful()
+        assert TagDeletionIsSuccessful()
     }
 
     def "使用済みのタグは削除できないよね"(){
@@ -47,7 +47,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         header.openMenuTag()
         addTag(tagName, tagDescription)
         then: "タグの登録に成功する"
-        TagCreationIsSuccessful()
+        assert TagCreationIsSuccessful()
 
         when: "登録したタグを持つテストケースを追加する"
         header.openMenuTestCase()
@@ -67,8 +67,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         def list = testTagItems
         list.size == 1
         withConfirm {list[0].deleteButton.click()}
-        then: "削除しましたメッセージが表示されない"
-        // TODO 本当は"削除できませんでした"メッセージを確認したい!!
-        TagDeletionIsSuccessful() == false
+        then: "削除できませんでしたメッセージが表示されない"
+        assert TagDeletionIsFailure()
     }
 }
