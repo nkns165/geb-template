@@ -1,4 +1,4 @@
-package org.star.scenario
+package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
 import org.star.domain.User
@@ -8,7 +8,7 @@ import org.star.page.TagPage
 /**
  * Created by itagakishintarou on 2014/11/23.
  */
-class TestTagRegistrationPractice extends GebReportingSpec {
+class TestTagPractice extends GebReportingSpec {
     def "タグ追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)
@@ -39,5 +39,23 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         def tagId = createTagAndGetTagId("タグ名" + UUID.randomUUID(), "説明")
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful(tagId)
+    }
+
+    def "タグ削除練習"() {
+        when:
+        teacher.login()
+        header.testTag.click()
+        for (int i = 0; i < 10; i++) {
+            if (!testTagItems) {
+                break
+            }
+            sleep(1500)
+            deleteTag()
+            sleep(500)
+            driver.switchTo().alert().accept()
+            sleep(1500)
+        }
+        then:
+        true
     }
 }

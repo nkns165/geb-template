@@ -1,4 +1,4 @@
-package org.star.scenario
+package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
 import org.star.domain.Administrator

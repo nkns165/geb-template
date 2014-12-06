@@ -1,4 +1,4 @@
-package org.star.scenario
+package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
 import org.star.domain.User
@@ -69,41 +69,5 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         filterByName("Equal To", "1_" + name)
         then: "シナリオが先生の更新どおりであることを確認する"
         testCaseItems[0].scenario == "修正"
-    }
-
-    def "テストケース削除練習"() {
-        when:
-        teacher.login()
-        header.testCase.click()
-        for (int i = 0; i < 10; i++) {
-            if (!testCaseItems) {
-                break
-            }
-            sleep(1500)
-            deleteTestCase()
-            sleep(500)
-            driver.switchTo().alert().accept()
-            sleep(1500)
-        }
-        then:
-        true
-    }
-
-    def "タグ削除練習"() {
-        when:
-        teacher.login()
-        header.testTag.click()
-        for (int i = 0; i < 10; i++) {
-            if (!testTagItems) {
-                break
-            }
-            sleep(1500)
-            deleteTag()
-            sleep(500)
-            driver.switchTo().alert().accept()
-            sleep(1500)
-        }
-        then:
-        true
     }
 }
