@@ -63,9 +63,13 @@ class TestCasePage extends Page {
         buttonActionFilter.click()
     }
 
-    public TestCaseRow[] searchTestCases(String name, String scenario, String[] tags) {
+    public TestCaseRow[] searchTestCases(Map param) {
+        String name = param?.name ?: ""
+        String scenario = param?.scenario ?: ""
+        String[] tags = param?.tags ?: []
+
         return testCaseItems.findAll {
-            (name == "" || it.name == name) && (scenario == "" || it.scenario == scenario) && (tags == "" || it.tags.split("\n").toList().containsAll(tags))
+            (name == "" || it.name == name) && (scenario == "" || it.scenario == scenario) && (tags == [] || it.tags.split("\n").toList().containsAll(tags))
         }
     }
 

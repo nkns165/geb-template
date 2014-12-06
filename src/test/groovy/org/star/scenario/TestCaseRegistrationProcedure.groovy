@@ -52,7 +52,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         header.openMenuTestCase()
         searchByTag("Equal To", tag)
         then: "下僕が登録した2つのテストケースがリストに表示される"
-        def list = searchTestCases("", "", tag)
+        def list = searchTestCases(tags: [tag])
         list.size() == 2
         list[0].name == "1_" + name && list[0].scenario == "1_" + scenario && list[0].tags == tag
         list[1].name == "2_" + name && list[1].scenario == "2_" + scenario && list[1].tags == tag
