@@ -18,7 +18,7 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         then:
         at TagPage
         when: "タグを追加する"
-        addTag("タグ名" + UUID.randomUUID(), "説明")
+        createTag("タグ名" + UUID.randomUUID(), "説明")
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful()
     }
@@ -36,7 +36,7 @@ class TestTagRegistrationPractice extends GebReportingSpec {
         then:
         at TagPage
         when: "タグを追加する"
-        def tagId = createTag("タグ名" + UUID.randomUUID(), "説明")
+        def tagId = createTagAndGetTagId("タグ名" + UUID.randomUUID(), "説明")
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful(tagId)
     }

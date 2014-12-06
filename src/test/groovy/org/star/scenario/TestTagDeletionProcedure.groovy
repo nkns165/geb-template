@@ -24,7 +24,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         user.login()
         when: "タグを追加する"
         header.openMenuTag()
-        addTag(tagName, tagDescription)
+        createTag(tagName, tagDescription)
         then: "タグの登録に成功する"
         assert TagCreationIsSuccessful()
 
@@ -45,7 +45,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         user.login()
         when: "タグを追加する"
         header.openMenuTag()
-        addTag(tagName, tagDescription)
+        createTag(tagName, tagDescription)
         then: "タグの登録に成功する"
         assert TagCreationIsSuccessful()
 

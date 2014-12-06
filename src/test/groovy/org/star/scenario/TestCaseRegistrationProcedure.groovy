@@ -29,7 +29,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         slave.login()
         when: "タグを追加する"
         header.openMenuTag()
-        addTag(tag, description)
+        createTag(tag, description)
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful()
         when: "追加したタグでテストケースの1つ目を追加する"

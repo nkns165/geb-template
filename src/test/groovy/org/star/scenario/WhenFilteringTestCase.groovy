@@ -35,7 +35,7 @@ class WhenFilteringTestCase extends GebReportingSpec {
         then: "Tagページが表示される"
         at TagPage
         when: "Tagを追加する"
-        addTag(tagName, "説明")
+        createTag(tagName, "説明")
         then: "Tagが追加される"
         TagCreationIsSuccessful()
         when: "TestCaseページを開く"

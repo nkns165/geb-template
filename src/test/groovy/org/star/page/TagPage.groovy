@@ -15,7 +15,7 @@ class TagPage extends Page {
         $("h1").text().contains("Tag")
     }
     static content = {
-        addTag { $("form[role=form]") }
+        tagForm { $("form[role=form]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
         testTagItems { moduleList TestTagRow, $("div.table-responsive tbody > tr") }
@@ -29,14 +29,14 @@ class TagPage extends Page {
         applyFilter {$("input", value:"Apply")}
     }
 
-    public void addTag(String name, String description) {
-        addTag.name = name
-        addTag.description = description
-        addTag.create().click()
+    public void createTag(String name, String description) {
+        tagForm.name = name
+        tagForm.description = description
+        tagForm.create().click()
     }
 
-    public String createTag(String name, String description) {
-        addTag(name, description)
+    public String createTagAndGetTagId(String name, String description) {
+        createTag(name, description)
         // TODO アプリケーション名外出し
         Process process = "heroku logs --app fathomless-stream-3131".execute()
         process.waitFor()
