@@ -53,7 +53,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         header.openMenuTestCase()
         def testCaseName = "testCase_" + UUID.randomUUID()
         def testCaseScenario = "Scenario_tag_" + UUID.randomUUID()
-        addTestCase(testCaseName, testCaseScenario, tagName)
+        createTestCase(testCaseName, testCaseScenario, tagName)
         then: "登録完了メッセージを確認する"
         assert TestCaseCreationIsSuccessful()
 

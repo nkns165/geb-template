@@ -34,12 +34,12 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         TagCreationIsSuccessful()
         when: "追加したタグでテストケースの1つ目を追加する"
         header.openMenuTestCase()
-        addTestCase("1_" + name, "1_" + scenario, tag)
+        createTestCase("1_" + name, "1_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "追加したタグでテストケースの2つ目を追加する"
         header.openMenuTestCase()
-        addTestCase("2_" + name, "2_" + scenario, tag)
+        createTestCase("2_" + name, "2_" + scenario, tag)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         and: "下僕がログアウトする"
@@ -50,7 +50,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         and: "追加したタグでテストケースを検索する"
         at DashBoardPage
         header.openMenuTestCase()
-        searchByTag("Equal To", tag)
+        filterByTag("Equal To", tag)
         then: "下僕が登録した2つのテストケースがリストに表示される"
         def list = searchTestCases(tags: [tag])
         list.size() == 2
@@ -66,7 +66,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         slave.login()
         and: "テストケース名で更新したテストケースを検索する"
         header.openMenuTestCase()
-        searchByName("Equal To", "1_" + name)
+        filterByName("Equal To", "1_" + name)
         then: "シナリオが先生の更新どおりであることを確認する"
         testCaseItems[0].scenario == "修正"
     }

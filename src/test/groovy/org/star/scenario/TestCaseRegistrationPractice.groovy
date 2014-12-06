@@ -18,7 +18,7 @@ class TestCaseRegistrationPractice extends GebReportingSpec {
         then:
         at TestCasePage
         when: "タグなしでテストケースを追加する"
-        addTestCase("テストケース名", "テストケースシナリオ")
+        createTestCase("テストケース名", "テストケースシナリオ")
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
     }

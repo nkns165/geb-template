@@ -44,17 +44,17 @@ class WhenFilteringTestCase extends GebReportingSpec {
         then: "TestCaseページが表示される"
         at TestCasePage
         when: "作成したTagを指定したTestCaseを追加する"
-        addTestCase("1_" + testCaseName, "1_" + testCaseScenario, tagName)
+        createTestCase("1_" + testCaseName, "1_" + testCaseScenario, tagName)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "作成したTagを指定したTestCaseをもう1件追加する"
         header.openMenuTestCase()
-        addTestCase("2_" + testCaseName, "2_" + testCaseScenario, tagName)
+        createTestCase("2_" + testCaseName, "2_" + testCaseScenario, tagName)
         then: "Test Case詳細画面に正常登録のメッセージが表示される"
         TestCaseCreationIsSuccessful()
         when: "TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
         header.openMenuTestCase()
-        searchByTag("Equal To", tagName)
+        filterByTag("Equal To", tagName)
         then: "TestCase詳細ページに遷移する"
         and: "TestCase詳細ページに作成した2件のTestCaseのみ表示されていることを確認する"
     }

@@ -33,11 +33,7 @@ class TestCasePage extends Page {
         update { $(".btn-primary", name: "update") }
     }
 
-    public void addTestCase(String name, String scenario) {
-        addTestCase(name, scenario, null)
-    }
-
-    public void addTestCase(String name, String scenario, String tag) {
+    public void createTestCase(String name, String scenario, String tag = null) {
         testCase.name = name
         testCase.scenario = scenario
         if (tag != null) {
@@ -51,14 +47,14 @@ class TestCasePage extends Page {
         return message.isDisplayed() && message.hasClass("alert-info")
     }
 
-    public void searchByName(String option, String name) {
+    public void filterByName(String option, String name) {
         filter.click()
         filterOpName = option
         filterName = name
         buttonActionFilter.click()
     }
 
-    public void searchByTag(String option, String tags) {
+    public void filterByTag(String option, String tags) {
         filter.click()
         filterOpTagsName = option
         filterTagsName = tags

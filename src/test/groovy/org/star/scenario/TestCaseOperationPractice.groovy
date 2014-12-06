@@ -55,7 +55,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         then: "テストケースページが表示される"
         at TestCasePage
         when: "テストケースを登録する。"
-        addTestCase(testCaseName, testCaseScenario)
+        createTestCase(testCaseName, testCaseScenario)
         then: "登録完了メッセージを確認する"
         assert TestCaseCreationIsSuccessful()
         when: "ログアウトする"
