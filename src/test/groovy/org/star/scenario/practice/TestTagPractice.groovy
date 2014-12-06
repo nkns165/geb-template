@@ -9,6 +9,20 @@ import org.star.page.TagPage
  * Created by itagakishintarou on 2014/11/23.
  */
 class TestTagPractice extends GebReportingSpec {
+    // user
+    User slave
+    User teacher
+    // test case
+    String tag = "tag_" + UUID.randomUUID()
+    String description = "description_" + UUID.randomUUID()
+    String name = "name_" + UUID.randomUUID()
+    String scenario = "scenario_" + UUID.randomUUID()
+
+    def setup() {
+        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
+        teacher = UserHelper.createUser(browser, "teacher_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
+    }
+
     def "タグ追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)

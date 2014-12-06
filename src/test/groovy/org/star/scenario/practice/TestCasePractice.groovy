@@ -1,6 +1,9 @@
 package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxProfile
 import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.TestCasePage
@@ -9,6 +12,20 @@ import org.star.page.TestCasePage
  * Created by itagakishintarou on 2014/11/23.
  */
 class TestCasePractice extends GebReportingSpec {
+    // user
+    User slave
+    User teacher
+    // test case
+    String tag = "tag_" + UUID.randomUUID()
+    String description = "description_" + UUID.randomUUID()
+    String name = "name_" + UUID.randomUUID()
+    String scenario = "scenario_" + UUID.randomUUID()
+
+    def setup() {
+        slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
+        teacher = UserHelper.createUser(browser, "teacher_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
+    }
+
     def "テストケース追加の練習"() {
         given: "一般ユーザでログインする"
         User user = UserHelper.createDefaultUser(browser)
