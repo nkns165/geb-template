@@ -19,12 +19,12 @@ class TestCasePage extends Page {
         testCaseHeading { $("#form h1") }
         // list
         filter { $("a", text: "Filter Me") }
-        filterOpName { $("#filter\\2e op\\2e name") }
-        filterName { $("#name") }
-        filterOpTagsName { $("#filter\\2e op\\2e tags\\2e name") }
-        filterTagsName { $("#tags\\2e name") }
+        filterOpName { $("select", id:"filter.op.name") }
+        filterName { $("input", id:"name") }
+        filterOpTagsName { $("select", id:"filter.op.tags.name") }
+        filterTagsName { $("input", id:"tags.name") }
         next(wait:true, required: false){$(".nextLink")}
-        buttonActionFilter { $("#filterPaneForm > div > div.buttons > span:nth-child(3) > input") }
+        buttonActionFilter { $("#filterPaneForm input", name:"_action_filter") }
         testCaseItems { moduleList TestCaseRow, $("#testCaseRow") }
         // create
         message { $("div.alert") }
