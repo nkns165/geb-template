@@ -66,7 +66,11 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         then: "削除をクリックする"
         def list = testTagItems
         list.size == 1
+<<<<<<< HEAD
         withConfirm {testTagItems[0].delete.click()}
+=======
+        withConfirm {list[0].delete.click()}
+>>>>>>> ad4ea6859ce4428e5c8c807da4966066138255c9
         then: "削除できませんでしたメッセージが表示されない"
         assert TagDeletionIsFailure()
     }
