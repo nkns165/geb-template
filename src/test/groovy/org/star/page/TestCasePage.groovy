@@ -23,6 +23,7 @@ class TestCasePage extends Page {
         filterName { $("#name") }
         filterOpTagsName { $("#filter\\2e op\\2e tags\\2e name") }
         filterTagsName { $("#tags\\2e name") }
+        next(wait:true, required: false){$(".nextLink")}
         buttonActionFilter { $("#filterPaneForm > div > div.buttons > span:nth-child(3) > input") }
         testCaseItems { moduleList TestCaseRow, $("#testCaseRow") }
         edits { $(".glyphicon-eye-open") }
@@ -66,8 +67,17 @@ class TestCasePage extends Page {
         String scenario = param?.scenario ?: ""
         List<String> tags = param?.tags ?: []
 
-        return testCaseItems.findAll {
+        List<TestCaseRow> result = testCaseItems.findAll {
             (name == "" || it.name == name) && (scenario == "" || it.scenario == scenario) && (tags == [] || it.tags.split("\n").toList().containsAll(tags))
+        }
+        if(result){
+            return result
+        } else if(find(".nextLink")){
+            next.click()
+            sleep(3000)
+            searchTestCases(name:name, scenario:scenario, tags:tags)
+        } else{
+            return []
         }
     }
 

@@ -70,7 +70,7 @@ class TestCaseOperationPractice extends GebReportingSpec {
         then: "テストケースページが開く"
         at TestCasePage
         then: "登録されたテストケースが参照できる"
-        searchTestCases(name:testCaseName, scenario:testCaseScenario).length == 1
+        searchTestCases(name:testCaseName, scenario:testCaseScenario).size() == 1
         when: "ログアウトする"
         admin.logout()
         then: "トップページが表示される"
