@@ -34,7 +34,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         then: "削除をクリックする"
         def list = testTagItems
         list.size == 1
-        withConfirm {list[0].deleteButton.click()}
+        withConfirm {list[0].delete.click()}
         then: "削除しましたメッセージが表示される"
         assert TagDeletionIsSuccessful()
     }
@@ -66,7 +66,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         then: "削除をクリックする"
         def list = testTagItems
         list.size == 1
-        withConfirm {list[0].deleteButton.click()}
+        withConfirm {list[0].delete.click()}
         then: "削除できませんでしたメッセージが表示されない"
         assert TagDeletionIsFailure()
     }
