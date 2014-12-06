@@ -10,19 +10,19 @@ class UserListPage extends Page {
     }
 
     static content = {
-        addUserForm { $("form[role=form]") }
+        createUser { $("form[role=form]") }
         checkEnabled { $("input[name=enabled]") }
         message { $("div.alert") }
         header { module LoginHeaderModule }
         deletes { $(".glyphicon-remove") }
     }
 
-    public void addUser(String userName, String password, String mailAddress) {
-        addUserForm.username = userName
-        addUserForm.password = password
-        addUserForm.email = mailAddress
+    public void createUser(String userName, String password, String mailAddress) {
+        createUser.username = userName
+        createUser.password = password
+        createUser.email = mailAddress
         checkEnabled = true
-        addUserForm.create().click()
+        createUser.create().click()
     }
 
     public boolean UserCreationIsSuccessful() {

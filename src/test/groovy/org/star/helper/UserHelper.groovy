@@ -28,7 +28,7 @@ class UserHelper {
         dashBoardPage.header.admin.user.click()
 
         UserListPage userListPage = browser.at UserListPage
-        userListPage.addUser(username, password, mailAddress)
+        userListPage.createUser(username, password, mailAddress)
         browser.waitFor { userListPage.message.isDisplayed() }
         userListPage.header.logout.click()
 
