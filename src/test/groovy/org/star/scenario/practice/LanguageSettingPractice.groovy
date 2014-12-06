@@ -1,14 +1,15 @@
 package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxProfile
 import org.star.domain.User
 import org.star.helper.UserHelper
-import org.star.page.TopPage
 
 /**
  * Created by itagakishintarou on 2014/12/06.
  */
-class UserPractice extends GebReportingSpec {
+class LanguageSettingPractice extends GebReportingSpec {
     // user
     User slave
     User teacher
@@ -19,28 +20,19 @@ class UserPractice extends GebReportingSpec {
     String scenario = "scenario_" + UUID.randomUUID()
 
     def setup() {
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference( "intl.accept_languages", "no,en-us,en" );
+        profile.setEnableNativeEvents(true);
+        driver = new FirefoxDriver(profile);
+
         slave = UserHelper.createUser(browser, "slave_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
         teacher = UserHelper.createUser(browser, "teacher_" + UUID.randomUUID(), UUID.randomUUID().toString(), "stac2014tamagawa@gmail.com", "tamagawa2014")
     }
-
-    def "ユーザー削除練習用"() {
-        given:
-        User admin = new User(userName: "admin", password: "admin", mailAddress: "stac2014tamagawa@gmail.com", mailPassword: "tamagawa2014", browser: browser)
-        when:
-        to TopPage
-        admin.login()
-        header.admin.user.click()
-        for (int i = 0; i < 10; i++) {
-            if (deletes.size() <= 5) {
-                break
-            }
-            sleep(1500)
-            deleteUser(5)
-            sleep(500)
-            driver.switchTo().alert().accept()
-            sleep(1500)
-        }
-        then:
-        true
+    def "ブラウザの言語設定によって英語表示されるテストの練習"(){
+        when:"ログインしてヘッダーのテストケースをクリックする"
+        teacher.login()
+        header.testCase.click()
+        then:"ページの見出しが英語になっている"
+        $("h1").text() == "Test Case List"
     }
 }
