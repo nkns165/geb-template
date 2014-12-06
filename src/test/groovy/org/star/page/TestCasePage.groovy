@@ -63,17 +63,17 @@ class TestCasePage extends Page {
         buttonActionFilter.click()
     }
 
-    public TestCaseRow[] searchTestCases(Map param) {
+    public List<TestCaseRow> searchTestCases(Map param) {
         String name = param?.name ?: ""
         String scenario = param?.scenario ?: ""
-        String[] tags = param?.tags ?: []
+        List<String> tags = param?.tags ?: []
 
         return testCaseItems.findAll {
             (name == "" || it.name == name) && (scenario == "" || it.scenario == scenario) && (tags == [] || it.tags.split("\n").toList().containsAll(tags))
         }
     }
 
-    public void updateTestCase(int index, String name, String scenario, String[] tags) {
+    public void updateTestCase(int index, String name, String scenario, List<String> tags) {
         edits[index].click()
         sleep(1000) // 今の作りだとformのHTMLを非同期で書き換え当ているため、アプリケーション側にJavaScriptの終了オブザーバーとか作らないとSleepで待つしかない
         testCase.name = name
