@@ -6,7 +6,7 @@ import java.util.regex.Matcher
  * Created by yoshimura on 2014/12/07.
  */
 class LogHelper {
-    static String unixShell = "heroku.bat logs --app fathomless-stream-3131"
+    static String unixShell = "heroku logs --app fathomless-stream-3131"
     static String windowsCmd = "cmd /c  heroku.bat logs --app fathomless-stream-3131"
 
     public static String getLogText(){
