@@ -70,9 +70,7 @@ class TestTagPractice extends GebReportingSpec {
                 break
             }
             sleep(1500)
-            deleteTag()
-            sleep(500)
-            driver.switchTo().alert().accept()
+            deleteTag(5)
             sleep(1500)
         }
         then:

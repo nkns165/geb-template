@@ -36,22 +36,47 @@ class WhenDeletingUnnecessaryData extends GebReportingSpec {
         and: "不要なタグを名前でフィルターする"
         filterByName(FilterOption.Equal_To.toString(), tagName)
         then: "タグが１つ表示される"
+        testTagItems.size() == 1
         when: "そのタグを削除する"
+        deleteTag(0)
         then: "削除に失敗する"
+        TagDeletionIsFailure()
         when: "テストケース画面に移動する"
+        header.testCase.click()
         and: "不要なタグに紐づくテストケースをタグ名でフィルターする"
+        filterByTag(FilterOption.Equal_To.toString(), tagName)
         then: "テストケースが３つ表示される"
-        when: "１つ目のテストケースをすべて削除する"
+        testCaseItems.size() == 3
+        when: "１つ目のテストケースを削除する"
+        deleteTestCase(0)
         then: "削除に成功する"
-        when: "２つ目のテストケースをすべて削除する"
+        TestCaseCreationIsSuccessful()
+        when: "不要なタグに紐づくテストケースをタグ名でフィルターする"
+        filterByTag(FilterOption.Equal_To.toString(), tagName)
+        then: "テストケースが２つ表示される"
+        testCaseItems.size() == 2
+        when: "２つ目のテストケースを削除する"
+        deleteTestCase(0)
         then: "削除に成功する"
-        when: "３つ目のテストケースをすべて削除する"
+        TestCaseCreationIsSuccessful()
+        when: "不要なタグに紐づくテストケースをタグ名でフィルターする"
+        filterByTag(FilterOption.Equal_To.toString(), tagName)
+        then: "テストケースが１つ表示される"
+        testCaseItems.size() == 1
+        when: "３つ目のテストケースを削除する"
+        deleteTestCase(0)
         then: "削除に成功する"
-        when: "whenタグ画面に移動する"
+        TestCaseCreationIsSuccessful()
+        when: "タグ画面に移動する"
+        header.testTag.click()
         and: "不要なタグを名前でフィルターする"
+        filterByName(FilterOption.Equal_To.toString(), tagName)
         then: "タグが１つ表示される"
+        testTagItems.size() == 1
         when: "タグを削除する"
+        deleteTag(0)
         then: "削除に成功する"
+        TagDeletionIsSuccessful()
     }
 
     def "１つタグとそれに紐づく３つのテストケースを作成する"(){

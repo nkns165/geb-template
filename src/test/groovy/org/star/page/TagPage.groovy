@@ -52,8 +52,8 @@ class TagPage extends Page {
                 message.text().contains("Tag(id:${tagId})を作成しました。")
     }
 
-    public void deleteTag() {
-        testTagItems[0].delete.click()
+    public void deleteTag(int index = 0) {
+        withConfirm(true) {testTagItems[index].delete.click()}
     }
 
     public boolean TagDeletionIsSuccessful(){

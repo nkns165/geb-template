@@ -50,8 +50,6 @@ class TestCasePractice extends GebReportingSpec {
             }
             sleep(1500)
             deleteTestCase()
-            sleep(500)
-            driver.switchTo().alert().accept()
             sleep(1500)
         }
         then:

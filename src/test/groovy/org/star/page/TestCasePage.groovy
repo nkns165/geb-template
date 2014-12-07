@@ -92,7 +92,7 @@ class TestCasePage extends Page {
         update.click()
     }
 
-    public void deleteTestCase() {
-        testCaseItems[0].delete.click()
+    public void deleteTestCase(int index = 0) {
+        withConfirm(true) {testCaseItems[index].delete.click()}
     }
 }
