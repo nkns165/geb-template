@@ -33,13 +33,12 @@ class TagPage extends Page {
         tagForm.create().click()
     }
 
-    public String createTagAndGetTagId(String name, String description) {
-        createTag(name, description)
+    public String logging() {
         // TODO アプリケーション名外出し
-        Process process = "heroku logs --app fathomless-stream-3131".execute()
-        process.waitFor()
-        Matcher tagIdMatcher = (process.text =~ /(?s)aop.TagServiceGet.*? : (\d+)/)
-        return tagIdMatcher[(int) tagIdMatcher.size() - 1][1]
+        // Process process = "cmd /c start heroku.bat logs --app fathomless-stream-3131".execute()
+        def process =  "cmd /c heroku.bat logs --app fathomless-stream-3131".execute()
+        //process.waitFor()
+        return process.text
     }
 
     public boolean TagCreationIsSuccessful() {

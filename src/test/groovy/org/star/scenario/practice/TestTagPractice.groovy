@@ -2,8 +2,11 @@ package org.star.scenario.practice
 
 import geb.spock.GebReportingSpec
 import org.star.domain.User
+import org.star.helper.LogHelper
 import org.star.helper.UserHelper
 import org.star.page.TagPage
+
+import java.util.regex.Matcher
 
 /**
  * Created by itagakishintarou on 2014/11/23.
@@ -50,7 +53,10 @@ class TestTagPractice extends GebReportingSpec {
         then:
         at TagPage
         when: "タグを追加する"
-        def tagId = createTagAndGetTagId("タグ名" + UUID.randomUUID(), "説明")
+        createTag("タグ名" + UUID.randomUUID(), "説明")
+        then:
+        def tagId = LogHelper.getTagId()
+        print tagId
         then: "Tag詳細画面に正常登録のメッセージが表示される"
         TagCreationIsSuccessful(tagId)
     }
