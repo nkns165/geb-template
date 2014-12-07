@@ -3,6 +3,7 @@ package org.star.scenario
 import geb.spock.GebReportingSpec
 import org.star.domain.User
 import org.star.helper.UserHelper
+import org.star.page.FilterOption
 import org.star.page.TagPage
 
 /**
@@ -30,7 +31,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
 
         when: "登録したテストタグを検索する"
         header.testTag.click()
-        filterByName("Equal To", tagName)
+        filterByName(FilterOption.Equal_To.toString(), tagName)
         then: "削除をクリックする"
         def list = testTagItems
         list.size == 1
@@ -62,7 +63,7 @@ class TestTagDeletionProcedure extends GebReportingSpec {
         then: "テストタグページが表示される"
         at TagPage
         when: "登録したテストタグを検索する"
-        filterByName("Equal To", tagName)
+        filterByName(FilterOption.Equal_To.toString(), tagName)
         then: "削除をクリックする"
         def list = testTagItems
         list.size == 1

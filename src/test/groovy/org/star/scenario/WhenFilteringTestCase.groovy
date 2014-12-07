@@ -3,6 +3,7 @@ package org.star.scenario
 import geb.spock.GebReportingSpec
 import org.star.domain.User
 import org.star.page.DashBoardPage
+import org.star.page.FilterOption
 import org.star.page.TagPage
 import org.star.page.TestCasePage
 import org.star.page.TopPage
@@ -54,7 +55,7 @@ class WhenFilteringTestCase extends GebReportingSpec {
         TestCaseCreationIsSuccessful()
         when: "TestCaseリストから最初に追加したTestCaseのTagNameリンクをクリックする"
         header.testCase.click()
-        filterByTag("Equal To", tagName)
+        filterByTag(FilterOption.Equal_To.toString(), tagName)
         then: "TestCase詳細ページに作成した2件のTestCaseのみ表示されていることを確認する"
         testCaseItems[0].tags == tagName
         testCaseItems[1].tags == tagName

@@ -4,6 +4,7 @@ import geb.spock.GebReportingSpec
 import org.star.domain.User
 import org.star.helper.UserHelper
 import org.star.page.DashBoardPage
+import org.star.page.FilterOption
 import org.star.page.TopPage
 
 /**
@@ -50,7 +51,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         and: "追加したタグでテストケースを検索する"
         at DashBoardPage
         header.testCase.click()
-        filterByTag("Equal To", tag)
+        filterByTag(FilterOption.Equal_To.toString(), tag)
         then: "下僕が登録した2つのテストケースがリストに表示される"
         def list = searchTestCases(tags: [tag])
         list.size() == 2
@@ -66,7 +67,7 @@ class TestCaseRegistrationProcedure extends GebReportingSpec {
         slave.login()
         and: "テストケース名で更新したテストケースを検索する"
         header.testCase.click()
-        filterByName("Equal To", "1_" + name)
+        filterByName(FilterOption.Equal_To.toString(), "1_" + name)
         then: "シナリオが先生の更新どおりであることを確認する"
         testCaseItems[0].scenario == "修正"
     }
