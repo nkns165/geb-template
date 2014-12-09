@@ -49,7 +49,7 @@ class TagPage extends Page {
     public boolean TagCreationIsSuccessful(String tagId) {
         println message.text()
         return TagCreationIsSuccessful() &&
-                message.text().contains("Tag(id:${tagId})を作成しました。")
+                message.text().contains(String.format("Tag(id:%,3d)を作成しました。", Integer.valueOf(tagId)))
     }
 
     public void deleteTag(int index = 0) {
